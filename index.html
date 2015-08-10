@@ -7,35 +7,145 @@
 
 </head>
 <body>
-<div data-role="page" id="pageone">
+
+
+<!-- begin homepage -->
+
+<div data-role="page" id="homepage">
   <div data-role="header">
     <h1>Welcome To My Homepage</h1>
   </div>
 
   <div data-role="main" class="ui-content">
-    <p>Welcome! If you click on the link below, it will take you to Page Two.</p>
-    <a href="#pagetwo">Go to Page Two</a>
+    <p>Welcome to our venue</p>
+    <p>We offer a range of items for you to choose from</p>
+    <p>Please visit our menu page to see our wares</p>
+    
   </div>
-
   <div data-role="footer">
-    <h1>Footer Text</h1>
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#homepage" data-icon="home" class="ui-btn-active ui-state-persist" >Home</a></li>
+        <li><a href="#menupage" data-icon="bars">Menu</a></li>
+        <li><a href="#contactUsPage" data-icon="mail">Contacts</a></li>
+        <li><a href="#reservationsPage" data-icon="calendar">Bookings</a></li>
+        <li><a href="#orderingPage" data-icon="shop">Order</a></li>
+      </ul>
+    </div>
   </div>
 </div> 
 
-<div data-role="page" id="pagetwo">
+<!-- end homepage -->
+
+<!-- begin menupage -->
+
+<div data-role="page" id="menupage">
   <div data-role="header">
-    <h1>Welcome To My Homepage</h1>
+    <h1>Welcome To My Menu Page</h1>
   </div>
 
   <div data-role="main" class="ui-content">
-    <p>This is Page Two. If you click on the link below, it will take you to Page One.</p>
-    <a href="#pageone">Go to Page One</a>
+    <p>This is the menu page. </p>
+    <p>We want to have some nice sections and images in here</p>
+    
   </div>
-
-  <div data-role="footer">
-    <h1>Footer Text</h1>
+<div data-role="footer">
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#homepage" data-icon="home" >Home</a></li>
+        <li><a href="#menupage" data-icon="bars" class="ui-btn-active ui-state-persist">Menu</a></li>
+        <li><a href="#contactUsPage" data-icon="mail">Contacts</a></li>
+        <li><a href="#reservationsPage" data-icon="calendar">Bookings</a></li>
+        <li><a href="#orderingPage" data-icon="shop">Order</a></li>
+      </ul>
+    </div>
   </div>
 </div>
+
+<!-- end menu page -->
+
+<!-- begin contacts page -->
+
+<div data-role="page" id="contactUsPage">
+  <div data-role="header">
+    <h1>Welcome To My Contacts Page</h1>
+  </div>
+
+  <div data-role="main" class="ui-content">
+    <p>This is the contacts page.</p>
+    <p>Name, address, phone number, link to call</p>
+    <p>Map would also be good with option to navigate to venue</p>
+    
+  </div>
+<div data-role="footer">
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#homepage" data-icon="home">Home</a></li>
+        <li><a href="#menupage" data-icon="bars">Menu</a></li>
+        <li><a href="#contactUsPage" data-icon="mail" class="ui-btn-active ui-state-persist">Contacts</a></li>
+        <li><a href="#reservationsPage" data-icon="calendar">Bookings</a></li>
+        <li><a href="#orderingPage" data-icon="shop">Order</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- end contacts page -->
+
+<!-- reservations page -->
+<div data-role="page" id="reservationsPage">
+  <div data-role="header">
+    <h1>Welcome To My Reservations Page</h1>
+  </div>
+
+  <div data-role="main" class="ui-content">
+    <p>This is the reservations page. </p>
+    <p>Customers will be able to make a booking</p>
+    
+   </div>
+<div data-role="footer">
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#homepage" data-icon="home">Home</a></li>
+        <li><a href="#menupage" data-icon="bars">Menu</a></li>
+        <li><a href="#contactUsPage" data-icon="mail">Contacts</a></li>
+        <li><a href="#reservationsPage" data-icon="calendar" class="ui-btn-active ui-state-persist">Bookings</a></li>
+        <li><a href="#orderingPage" data-icon="shop">Order</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- end reservations page -->
+
+
+
+<!-- ordering page -->
+
+<div data-role="page" id="orderingPage">
+  <div data-role="header">
+    <h1>Welcome To My Orders Page</h1>
+  </div>
+
+  <div data-role="main" class="ui-content">
+    <p>This is the orders page.</p>
+    <p>Customers will be able to place orders here for collection</p>
+  </div>
+<div data-role="footer">
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#homepage" data-icon="home">Home</a></li>
+        <li><a href="#menupage" data-icon="bars">Menu</a></li>
+        <li><a href="#contactUsPage" data-icon="mail">Contacts</a></li>
+        <li><a href="#reservationsPage" data-icon="calendar">Bookings</a></li>
+        <li><a href="#orderingPage" data-icon="shop" class="ui-btn-active ui-state-persist">Order</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<!-- end ordering page -->
 </body>
 
 
