@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
 <script src="js/jquery-1.11.3.min.js"></script>
 <script src="js/jquery.mobile-1.4.5.min.js"></script>
+<script src="js/myJS.js"></script> <!-- load my custom javascript functions -->
 
 </head>
 <body>
@@ -174,30 +175,43 @@
     <p>So, our products have enticed you and you want to know more</p>
     You can call us on <a href="tel:0400000111" data-role="button" rel="external">Phone: 0400000111</a><br />
     <a href="tel:0355551111" data-role="button" rel="external">Phone: 03 5555 1111</a>
-    <p>We can cater for indivdual requirements or parties.</p>
+    <p>We can cater for individual requirements or parties.</p>
     <p>You can leave feedback for us using the form below</p>
-    <form method="post" action="theFormInput.php">
-      <label for="userName">Your Name :</label>
-      <input type="text" name="userName" id="userName">
-      <label for="userEmail">Your Email Address :</label>
-      <input type="text" name="userEmail" id="userEmail">
-      <fieldset data-role="controlgroup" data-type="horizontal">
-      <legend>Please rate your visit:</legend>
-        <label for="vgood">Very good</label>
-        <input type="radio" name="rating" id="vgood" value="vgood">
-        <label for="good">Good</label>
-        <input type="radio" name="rating" id="good" value="good">	
-        <label for="average">Average</label>
-        <input type="radio" name="rating" id="average" value="average">
-        <label for="poor">Poor</label>
-        <input type="radio" name="rating" id="poor" value="poor">
-        <label for="vpoor">Very Poor</label>
-        <input type="radio" name="rating" id="vpoor" value="vpoor">
-      </fieldset>
-      <label for="userFeedback">Additional Feedback :</label>
-      <textarea name="userFeedback" id="userFeedback"></textarea>
-      <input type="submit" value="Submit" data-icon="check" data-iconpos="right" data-inline="true">
+    <div id="textOutput"></div>
+    <form method="post" action="">
+
+	      <div id="ratingDiv">
+		      <fieldset data-role="controlgroup" data-type="horizontal">
+
+		      <legend>Please rate your visit:</legend>
+		        <label for="vgood">Very good</label>
+		        <input type="radio" name="rating" id="vgood" value="vgood" onClick="feedbackRating(this.id);">
+		        <label for="good">Good</label>
+		        <input type="radio" name="rating" id="good" value="good" onClick="feedbackRating(this.id);">	
+		        <label for="average">Average</label>
+		        <input type="radio" name="rating" id="average" value="average" onClick="feedbackRating(this.id);">
+		        <label for="poor">Poor</label>
+		        <input type="radio" name="rating" id="poor" value="poor" onClick="feedbackRating(this.id);">
+		        <label for="vpoor">Very Poor</label>
+		        <input type="radio" name="rating" id="vpoor" value="vpoor" onClick="feedbackRating(this.id);">
+		      </fieldset>
+		  </div>
+      <div id="feedbackText" style="display:none">
+	      <label for="userFeedback" id="feedbackLabel">Additional Feedback :</label>
+	      <textarea name="userFeedback" id="userFeedback" placeholder="Enter feedback here"></textarea>
+	      
+	  </div>
+	  <div id="additionalDetails" style="display:none">
+	      <label for="userName">Your Name :</label>
+	      <input type="text" name="userName" id="userName">
+	      <label for="userEmail">Your Email Address :</label>
+	      <input type="text" name="userEmail" id="userEmail">
+	      <label for="userPhone">Phone number :</label>
+	      <input type="text" name="userPhone" id="userPhone">
+      	</div>
+      	<input type="button" value="Submit" data-icon="check" data-iconpos="right" data-inline="true" onClick="processTheFeedback()">
     </form>
+
     
   </div>
 <div data-role="footer">
