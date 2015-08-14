@@ -12,7 +12,7 @@
 <script src="js/myJS.js"></script> <!-- load my custom javascript functions -->
 
 </head>
-<body>
+<body onLoad="isMobile();"> <!-- checks if we are on a mobile browser otherwise we want to hide the telephone dial links -->
 
 
 <!-- begin homepage -->
@@ -173,12 +173,11 @@
 
   <div data-role="main" class="ui-content">
     <p>So, our products have enticed you and you want to know more</p>
-    You can call us on <a href="tel:0400000111" data-role="button" rel="external">Phone: 0400000111</a><br />
-    <a href="tel:0355551111" data-role="button" rel="external">Phone: 03 5555 1111</a>
+    You can call us on <a href="tel:0400000111" data-role="button" rel="external" id="phone1" data-inline="true">Phone: 0400000111</a>
+    <a href="tel:0355551111" data-role="button" rel="external" id="phone2" data-inline="true">Phone: 03 5555 1111</a>
     <p>We can cater for individual requirements or parties.</p>
-    <p>You can leave feedback for us using the form below</p>
     <div id="textOutput"></div>
-    <form method="post" action="">
+    <form method="post" action="" id="theFeedbackForm">
 
 	      <div id="ratingDiv">
 		      <fieldset data-role="controlgroup" data-type="horizontal">
@@ -202,14 +201,19 @@
 	      
 	  </div>
 	  <div id="additionalDetails" style="display:none">
-	      <label for="userName">Your Name :</label>
-	      <input type="text" name="userName" id="userName">
-	      <label for="userEmail">Your Email Address :</label>
-	      <input type="text" name="userEmail" id="userEmail">
-	      <label for="userPhone">Phone number :</label>
-	      <input type="text" name="userPhone" id="userPhone">
+	  		<p>If you like you can give us the optional details below</p>
+	      <!--<label for="userName">Your Name :</label> -->
+	      <input type="text" name="userName" id="userName" placeholder="Your name">
+	      <!--<label for="userEmail">Your Email Address :</label> -->
+	      <input type="text" name="userEmail" id="userEmail" placeholder="Your email address">
+	      <!--<label for="userPhone">Phone number :</label> -->
+	      <input type="text" name="userPhone" id="userPhone" placeholder="Your phone number">
+	      <!--<label for="userPostcode">Postcode :</label> -->
+	      <input type="text" name="userPostcode" id="userPostcode" placeholder="Home postcode">
+
+	      <input type="button" value="Send Feedback" data-icon="check" data-iconpos="right" data-inline="true" onClick="processTheFeedback()">
       	</div>
-      	<input type="button" value="Submit" data-icon="check" data-iconpos="right" data-inline="true" onClick="processTheFeedback()">
+
     </form>
 
     

@@ -6,6 +6,37 @@ by John Wilson for SIT313
 var ratingClicked = ''; // holds which feedback rating has been clicked
 var outputString = ''; // this is to hold additional output we may push to the page depending on user input
 
+var isThisAMobileDevice = false;
+
+function isMobile() { // this function is based on the one from here http://magentohostsolution.com/3-ways-detect-mobile-device-jquery/
+  try{ 
+  	document.createEvent("TouchEvent");
+  	isThisAMobileDevice = true;
+  	$('#phone1').attr("href", "tel:0400000111"); // set the phone number 1 link
+  	$('#phone2').attr("href", "tel:0355551111"); // set the phone number 2 link
+  	return true;
+  }
+  catch(e){ 
+  	
+  	isThisAMobileDevice = false;
+  	$('#phone1').attr("href", ""); // clear the phone number 1 link
+  	$('#phone2').attr("href", ""); // clear the phone number 2 link
+
+  	return false; 
+  }
+}
+
+function js_yyyy_mm_dd_hh_mm_ss () { // this function is based of the one here http://tylerfrankenstein.com/user/4/code/javascript-date-time-yyyy-mm-dd-hh-mm-ss
+  now = new Date();
+  year = "" + now.getFullYear();
+  month = "" + (now.getMonth() + 1); if (month.length == 1) { month = "0" + month; }
+  day = "" + now.getDate(); if (day.length == 1) { day = "0" + day; }
+  hour = "" + now.getHours(); if (hour.length == 1) { hour = "0" + hour; }
+  minute = "" + now.getMinutes(); if (minute.length == 1) { minute = "0" + minute; }
+  second = "" + now.getSeconds(); if (second.length == 1) { second = "0" + second; }
+  return year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
+}
+
 function feedbackRating(theRating){
 	console.log("The rating = " + theRating);
 	// let's show the additional info box
@@ -37,9 +68,9 @@ function feedbackRating(theRating){
 }
 function askQuestion(theRating){
 	// this is to change the dialog depending on the user feedback
-	var theQuestion = '';
+	var theQuestion = '<br />';
 	if (theRating == 'vpoor'){
-		theQuestion = "<strong>Really" + "&#8253;</strong>" + " Please tell us what we did so badly?";
+		theQuestion = "<larger>Really" + "&#8253;</larger>" + " Please tell us what we did so badly?";
 	}
 	if (theRating == 'poor'){
 		theQuestion = "Oh, OK, I guess we have room for improvement, can you please elaborate?";
@@ -66,11 +97,8 @@ function processTheFeedback(){
 	userName  ---- holds the entered name
 	email ----  holds the email address
 	userFeedback ---- holds any feedback they may have entered
-	vpoor
-	poor
-	average
-	good
-	vgood
+	rating = vpoor,poor,average,good,vgood
+
 
 
 
@@ -78,13 +106,116 @@ function processTheFeedback(){
 	*/
 	var userName = $('#userName').val();
 	//alert(userName);
-	$('#textOutput').html(userName);
+	//$('#textOutput').html(userName);
 
 	var userEmail = $('#userEmail').val();
-	$('#textOutput').append("<br />" + userEmail);
+	//$('#textOutput').append("<br />" + userEmail);
 
 	var userFeedback = $('#userFeedback').val();
-	$('#textOutput').append("<br />" + userFeedback);
+	var userPostcode = $('#userPostcode').val();
+	var userPhone = $('#userPhone').val();
+	//$('#textOutput').append("<br />" + userFeedback);
 
-	$('#textOutput').append("<br />Rating: " + ratingClicked);
+	//$('#textOutput').append("<br />Rating: " + ratingClicked);
+
+	// we want to build an array of the sanitised input which we can the JSON.stringify to send to the backend
+	var theDate = js_yyyy_mm_dd_hh_mm_ss(); // returns the date formatted as MSB -> LSB which makes sorting easier
+	var theUserIP = ""; // this will be added by the backend when the data is sent
+	var resultsArray = []; // holds the contents of the form
+	resultsArray.push(userName); // push the username into the array
+	resultsArray.push(userEmail); // push the email into the array
+	resultsArray.push(userFeedback); // push the userFeedback into the array
+	resultsArray.push(ratingClicked); // push the user rating into the array
+	resultsArray.push(userPostcode); // push the postcode into the array
+	resultsArray.push(userPhone); // push the phone number into the array
+	resultsArray.push(theUserIP); // push the IP into the array (it doesn't really exist here, it'll be added at the backend)
+	resultsArray.push(theDate); // push the submitted date/time into the array
+
+	var theString = JSON.stringify(resultsArray); // convert the array to a JSON string
+	//console.log(theString);
+	// we'll use ajax to send the data to the backend
+/*
+	$.ajax({
+	    type: "POST", // type of ajax request
+	    url: "theFormInput.php", // php processor for the ajax
+	    data: theString, // the data we are passing via ajax
+	    contentType: "application/json; charset=utf-8", // set the content type to avoid any error
+	    dataType: "json", // set the data type for the ajax request
+	    success: function(data){console.log(data);},
+	   // success: function(data){
+	    //	alert("Well done" + data);
+	    //	console.log(data);
+	    //}, 
+	    //success: function(data){$('#textOutput').html(data);}, // do this on success
+	   // failure: function(errMsg) {
+	   	failure: function(data){$('#textOutput').html(data);}
+	        //console.log(errMsg); // and this on failure
+	   	//}
+	    //}
+	});*/
+
+
+// Assign handlers immediately after making the request,
+// and remember the jqxhr object for this request
+var jqxhr = $.post( "theFormInput.php", $('#theFeedbackForm').serialize(), function(data) {
+  //alert(  data  );
+  // this indecates that ajax was able to talk to the PHP and return some data
+  // we need to check the data to see if it contains an error condition
+  if ( data == 'Hot to trot'){ // then we have success
+  	feedbackSuccess();
+
+  } else {
+  	// there is some sort of error
+  	feedbackFailure(data);
+  }
+
+})
+  .done(function() {
+  //  alert( "second success" );
+  })
+  .fail(function() {
+    alert( "error" );
+  })
+  .always(function() {
+    //alert( "finished" );
+});
+ 
+// Perform other work here ...
+ 
+// Set another completion function for the request above
+jqxhr.always(function() {
+ // alert( "second finished" );
+});
+
+
+}
+
+function feedbackSuccess(){ // do stuff here when the feedback was successfully submitted
+	$('#ratingDiv').hide();
+	$('#phone1').hide();
+	$('#phone2').hide();
+
+
+
+}
+function feedbackFailure(theErrorList){
+	$('#userEmail').css("background-color","white");
+	$('#userPhone').css("background-color","white"); // clear any red boxes from previous attempts
+	$('#userPostcode').css("background-color", "white");
+	// we're here because there was an error in the input data
+// errorList is like this "['john.aol.com is not a valid email address'],['userEmail']"
+	var theErrorArray = theErrorList.split(',');
+	console.log(theErrorArray.length);
+	// the error array should always contain either nothing or an error message(s) and error location(s)
+	if (theErrorArray.length > 0){ // then there are some errors
+		for (var y=0;y<theErrorArray.length-2;y=y+2){ //step by 2's in the loop
+			console.log("Error: " + theErrorArray[y]);
+			console.log("Location: " + theErrorArray[y+1])
+			$('#' + theErrorArray[y+1]).css("background-color","red");
+		}
+
+	}
+	//console.log(theErrorList.length);
+	//console.log(JSON.parse(theErrorList));
+
 }
