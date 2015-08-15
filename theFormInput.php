@@ -1,4 +1,5 @@
 <?php
+require_once('Connections/mysql.php');
 /*
 This is to process the user feedback form
 It will sanitise the user input date before commiting it to the database
