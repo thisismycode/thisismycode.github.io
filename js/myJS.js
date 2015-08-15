@@ -173,8 +173,8 @@ var jqxhr = $.post( "theFormInput.php", $('#theFeedbackForm').serialize(), funct
   .done(function() {
   //  alert( "second success" );
   })
-  .fail(function() {
-    alert( "error" );
+  .fail(function(errMsg) {
+    alert( "error " + errMsg);
   })
   .always(function() {
     //alert( "finished" );
