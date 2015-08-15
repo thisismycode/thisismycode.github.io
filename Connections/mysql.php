@@ -1,6 +1,6 @@
 // This is to connect to the remote MySQL Database
 
-<?
+<?php
 $servername = "184.107.243.203"; // here I put the actual IP address
 $username = "emeraldn_sit313";
 $password = "fm9ygh1uw399op";

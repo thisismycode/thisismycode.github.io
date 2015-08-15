@@ -87,7 +87,6 @@ if (strlen($postcode) < 4 && strlen($postcode) > 1){
 if ($theError == ''){ // there is no error so we can proceed
 	echo "Hot to trot";
 	return true;
-	//return "Hot to trot";
 
 } else {
 	// there was an error so we need to send some info back regarding the error

@@ -157,9 +157,11 @@ function processTheFeedback(){
 
 // Assign handlers immediately after making the request,
 // and remember the jqxhr object for this request
-var jqxhr = $.post( "/theFormInput.php", $('#theFeedbackForm').serialize(), function(data) {
+var jqxhr = $.post( "https://emeraldnetworksolutions.com.au/sit313/theFormInput.php", $('#theFeedbackForm').serialize(), function(data) {
+//var jqxhr = $.post( "http://emeraldnetworksolutions.com.au/sit313/test.php?callback=", $('#theFeedbackForm').serialize(), function(data) {
+
   //alert(  data  );
-  // this indecates that ajax was able to talk to the PHP and return some data
+  // this indicates that ajax was able to talk to the PHP and return some data
   // we need to check the data to see if it contains an error condition
   if ( data == 'Hot to trot'){ // then we have success
   	feedbackSuccess();
@@ -174,7 +176,7 @@ var jqxhr = $.post( "/theFormInput.php", $('#theFeedbackForm').serialize(), func
   //  alert( "second success" );
   })
   .fail(function(errMsg) {
-    alert( "error -" + errMsg);
+    alert( "error -" + JSON.stringify(errMsg));
   })
   .always(function() {
     //alert( "finished" );
