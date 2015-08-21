@@ -9,24 +9,24 @@ mostly with regard to the thumnails and popups*/
 
 /* burger pop ups */
 #vealBurger-popup, #baconBurger-popup, #chickenBurger-popup {
-    width: 70%;
-    left: 15%;
-    right: 15%;
+    width: 80%;
+    left: 10%;
+    right: 10%;
 }
 
 /* sandwich pop ups */
 
 #eggCherrySandwich-popup, #eggCressSandwich-popup, #camenbertMangoSandwich-popup, #clubSandwich-popup{
-	width: 70%;
-    left: 15%;
-    right: 15%;
+	width: 80%;
+    left: 10%;
+    right: 10%;
 }
 
 /* snack pop ups */
 #cupCakes-popup, #chocoDonut-popup, #macaron-popup, #hotJamDonut-popup{
-	width: 70%;
-    left: 15%;
-    right: 15%;
+	width: 80%;
+    left: 10%;
+    right: 10%;
 
 }
 
@@ -34,9 +34,9 @@ mostly with regard to the thumnails and popups*/
 /* beverages pop ups */
 
 #coffee-popup, #tea-popup, #shake-popup{
-	width: 70%;
-    left: 15%;
-    right: 15%;
+	width: 80%;
+    left: 10%;
+    right: 10%;
 }
 
 
