@@ -157,7 +157,8 @@ function processTheFeedback(){
 
 // Assign handlers immediately after making the request,
 // and remember the jqxhr object for this request
-var jqxhr = $.post( "https://emeraldnetworksolutions.com.au/sit313/theFormInput.php", $('#theFeedbackForm').serialize(), function(data) {
+var jqxhr = $.post( "theFormInput.php", $('#theFeedbackForm').serialize(), function(data) { // for local hosting only
+//var jqxhr = $.post( "https://emeraldnetworksolutions.com.au/sit313/theFormInput.php", $('#theFeedbackForm').serialize(), function(data) {
 //var jqxhr = $.post( "http://emeraldnetworksolutions.com.au/sit313/test.php?callback=", $('#theFeedbackForm').serialize(), function(data) {
 
   //alert(  data  );
@@ -196,6 +197,7 @@ function feedbackSuccess(){ // do stuff here when the feedback was successfully 
 	$('#ratingDiv').hide();
 	$('#phone1').hide();
 	$('#phone2').hide();
+	$('#theFeedbackForm').hide();
 
 
 
@@ -210,14 +212,24 @@ function feedbackFailure(theErrorList){
 	console.log(theErrorArray.length);
 	// the error array should always contain either nothing or an error message(s) and error location(s)
 	if (theErrorArray.length > 0){ // then there are some errors
+		$('#textOutput').html(''); // clear the text output
 		for (var y=0;y<theErrorArray.length-2;y=y+2){ //step by 2's in the loop
 			console.log("Error: " + theErrorArray[y]);
 			console.log("Location: " + theErrorArray[y+1])
 			$('#' + theErrorArray[y+1]).css("background-color","red");
+			$('#textOutput').append(theErrorArray[y] + "<br />");
 		}
 
 	}
 	//console.log(theErrorList.length);
 	//console.log(JSON.parse(theErrorList));
 
+}
+
+function showAccidentDetails(){
+	// if someone clicks on the text about the accident we want to show them some more details, maybe even an image or too
+
+	// but for now let's just pop up an alert
+
+	alert("Wow, you're keen. But if we tell you how to do it you might get hurt. Safety first children.");
 }

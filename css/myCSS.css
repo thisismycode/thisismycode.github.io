@@ -1,0 +1,43 @@
+/* this is to override some of the jquery mobile settings
+mostly with regard to the thumnails and popups*/
+
+.ui-list-thumb{
+	max-width: 6em;
+	max-height:6em;
+}
+
+
+/* burger pop ups */
+#vealBurger-popup, #baconBurger-popup, #chickenBurger-popup {
+    width: 50%;
+    left: 10%;
+    right: 10%;
+}
+
+/* sandwich pop ups */
+
+#eggCherrySandwich-popup, #eggCressSandwich-popup, #camenbertMangoSandwich-popup, #clubSandwich-popup{
+	width: 50%;
+    left: 10%;
+    right: 10%;
+}
+
+/* snack pop ups */
+#cupCakes-popup, #chocoDonut-popup, #macaron-popup, #hotJamDonut-popup{
+	width: 50%;
+    left: 10%;
+    right: 10%;
+
+}
+
+
+/* beverages pop ups */
+
+#coffee-popup, #tea-popup, #shake-popup{
+	width: 50%;
+    left: 10%;
+    right: 10%;
+}
+
+
+

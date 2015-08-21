@@ -7,6 +7,7 @@
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
 <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+<link rel="stylesheet" href="css/myCSS.css">
 <script src="js/jquery-1.11.3.min.js"></script>
 <script src="js/jquery.mobile-1.4.5.min.js"></script>
 <script src="js/myJS.js"></script> <!-- load my custom javascript functions -->
@@ -20,24 +21,29 @@
 <div data-role="page" id="homepage">
   <div data-role="header">
     <h1>Sweet Soul Sister</h1>
-  </div>
-
-  <div data-role="main" class="ui-content">
-    <p>Welcome to Sweet Soul Sister</p>
-    <p>We offer a range of items for you to choose from</p>
-    <p>We have marshmallows, macarons and candles in complementary flavours and scents. </p>
-    
-  </div>
-  <div data-role="footer">
     <div data-role="navbar">
       <ul>
         <li><a href="#homepage" data-icon="home" class="ui-btn-active ui-state-persist" >Home</a></li>
         <li><a href="#menupage" data-icon="bars">Menu</a></li>
-        <li><a href="#contactUsPage" data-icon="mail">Contacts</a></li>
+        <li><a href="#contactUsPage" data-icon="map">Where, Who, What?</a></li>
         <li><a href="#reservationsPage" data-icon="calendar">Bookings</a></li>
-        <li><a href="#orderingPage" data-icon="shop">Order</a></li>
       </ul>
     </div>
+  </div>
+
+  <div data-role="main" class="ui-content">
+    <h2>Welcome to Sweet Soul Sister, for all your snacking satisfaction.</h2>
+    <p>We were established in 2078 and due to an accident involving a 
+    <span id='accidentSpan' onClick='showAccidentDetails();'>macaron pipe bag, an unattended mop bucket and some bleach</span>
+     a freak wormhole opened up and we found ourselves in 2015. Not used to the primitive nature of the Internet in this era, this is the best website we could achieve, as in our time, ... sorry no, we can't tell you anything about our time, that would violate some principal or other.  </p>
+    
+    <p>Now don't despair, while we can't tell you anything about our own time we can give you a practical demonstration of the advances in culinary cuisine that have happened / will be going to have happened in the next/last 63 years. My, time travel makes tenses confusing.</p>
+    <p>Please feel free to drop by and sample this 'out of this time' experience. And do hurry, as if an accident happened once before, it could happen again, then where would we be?</p> 
+
+    
+  </div>
+  <div data-role="footer">
+  	<p>Site Design by John Wilson for Deakin SIT313 Assignment 1</p>
   </div>
 </div> 
 
@@ -47,120 +53,332 @@
 
 <div data-role="page" id="menupage">
   <div data-role="header">
-    <h1>Welcome To My Menu Page</h1>
-  </div>
-
-  <div data-role="main" class="ui-content">
-    <p>This is the menu page. </p>
-    
-    <div data-role="collapsibleset">
-	  <div data-role="collapsible">
-	    <h1>Marshmallows</h1>
-	    <div data-role="collapsibleset">
-		    <div data-role="collapsible">
-		    	<h1>Chicacherrycola</h1>
-		    	<p>Some stuff about Chicacherrycola</p>
-		    	<img src="images/chicacherrycola.png" alt="Image of Chica cherry cola marshmallow" />
-		  	</div>
-		  	<div data-role="collapsible">
-		    	<h1>Creme Brulee</h1>
-		    	<p>Some stuff about Creme Brulee marshmallows</p>
-		    	<img src="images/cremebrulee.png" alt="Image of Creme Brulee marshmallow" />
-		  	</div>
-		  	<div data-role="collapsible">
-		    	<h1>Salted Caramel</h1>
-		    	<p>Some stuff about Salted Caramel marshmallows</p>
-		  	</div>
-		</div>
-	  </div>
-  <div data-role="collapsible">
-    <h1>Macarons</h1>
-   <!-- <p>I'm the expanded content.</p> -->
-   		<div data-role="collapsibleset">
-		    <div data-role="collapsible">
-		    	<h1>Strawberry Macaron</h1>
-		    	<p>Some stuff about Strawberry macaron</p>
-		  	</div>
-		  	<div data-role="collapsible">
-		    	<h1>Orange Macaron</h1>
-		    	<p>Some stuff about Orange Macaron</p>
-		  	</div>
-		  	<div data-role="collapsible">
-		    	<h1>Salted Caramel Macaron</h1>
-		    	<p>Some stuff about Salted Caramel Macaron</p>
-		  	</div> <!--
-		  	<div data-role="collapsible">
-		    	<h1>Chicken Schnitzel</h1>
-		    	<p>Some stuff about chicken schinitzel</p>
-		  	</div>
-		  	<div data-role="collapsible">
-		    	<h1>Chicken Burger</h1>
-		    	<p>Some stuff about chicken burger</p>
-		  	</div>
-		  	<div data-role="collapsible">
-		    	<h1>Garlic Chicken Balls</h1>
-		    	<p>Some stuff about garlic chicken balls</p>
-		  	</div> -->
-		</div>
-	  </div>
-
-	<div data-role="collapsible">
-    	<h1>Candles</h1>
-    	<div data-role="collapsibleset">
-		    <div data-role="collapsible">
-		    	<h1>Salted Caramel Candle</h1>
-		    	<p>Some stuff about Salted Caramel Candle</p>
-		  	</div>
-		  	<div data-role="collapsible">
-		    	<h1>Liquorice Candle</h1>
-		    	<p>Some stuff about Liquorice Candle</p>
-		  	</div>
-		  	<div data-role="collapsible">
-		    	<h1>Orange Candle</h1>
-		    	<p>Some stuff about Orange Candle</p>
-		  	</div> <!--
-		  	<div data-role="collapsible">
-		    	<h1>Potatoe Salad</h1>
-		    	<p>Some stuff about Potatoe salad</p>
-		  	</div>
-		  	<div data-role="collapsible">
-		    	<h1>Roasted Veggies</h1>
-		    	<p>Some stuff about Roasted Veggies</p>
-		  	</div>
-		  	<div data-role="collapsible">
-		    	<h1>Gravy</h1>
-		    	<p>Some stuff about gravy</p>
-		  	</div> -->
-		</div>
-    </div><!--
-    <div data-role="collapsible">
-	    <h1>Sweets</h1>
-	    <div data-role="collapsibleset">
-		    <div data-role="collapsible">
-		    	<h1>Doughnuts</h1>
-		    	<p>Some stuff about doughnuts</p>
-		  	</div>
-		  	<div data-role="collapsible">
-		    	<h1>Ice cream</h1>
-		    	<p>Some stuff about ice cream</p>
-		  	</div>
-		</div>
-  	</div> -->
- </div>
-    
-  </div>
-<div data-role="footer">
+    <h1>Our Menu</h1>
     <div data-role="navbar">
       <ul>
-        <li><a href="#homepage" data-icon="home" >Home</a></li>
-        <li><a href="#menupage" data-icon="bars" class="ui-btn-active ui-state-persist">Menu</a></li>
-        <li><a href="#contactUsPage" data-icon="mail">Contacts</a></li>
+        <li><a href="#homepage" data-icon="home" class="ui-btn-active ui-state-persist" >Home</a></li>
+        <li><a href="#menupage" data-icon="bars">Menu</a></li>
+        <li><a href="#contactUsPage" data-icon="map">Where, Who, What?</a></li>
         <li><a href="#reservationsPage" data-icon="calendar">Bookings</a></li>
-        <li><a href="#orderingPage" data-icon="shop">Order</a></li>
       </ul>
     </div>
   </div>
-</div>
+
+  <div data-role="main" class="ui-content">
+  <!-- pop up divs for the burgers -->
+  	<div data-role="popup" id="vealBurger" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
+  		<h2>The veal burger</h2>
+  		<p>Our veal burger is beautifully breadcrumbed and shallow fried in lard for maximum indulgence. It is served with melted tasty cheese, red onion and gherkin.</p>
+    	<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/burger-1.jpg" alt="Veal Burger">
+	</div>
+	<div data-role="popup" id="baconBurger" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
+		<h2>Our Bacon Burger</h2>
+		<p>This is our mouthwatering, futuristic take on the classic British bacon roll. There is no burger to be found in this, instead it's all bacon, chili, onion and pickle served in a toasted bun.</p>
+    	<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/burger-2.jpg" alt="Bacon Burger">
+	</div>
+	<div data-role="popup" id="chickenBurger" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
+		<h2>Chicken Burger</h2>
+		<p>This is our beer battered chicken burger. We can't tell you the brand of beer but it's <strong>V</strong>ictoria's <strong>B</strong>est. (Wink Wink).</p>
+		<p>It is served in a seeded bun and has some really aneamic looking cheese.</p><p>It also has a couple of pieces of very plastic looking highly processed meat, probably mechanically recovered for added value.</p><p>Anyway, regardless of what it looks like it probably tastes better.</p>
+    	<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/burger-3.jpg" alt="Chicken Burger">
+	</div>
+	<!-- end of burger pop up divs -->
+
+	<!-- pop up divs for the sandwiches -->
+	<div data-role="popup" id="eggCherrySandwich" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
+  		<h2>Egg and Cherry Tomato open sandwich</h2>
+  		<p>Our egg and cherry tomato and cheese sandwich is served on a piece of bread with some really spicy salami, some rocket (or is it wilted spinach) and a drizzle of extra virgin olive oil. The avocado is optional and this dish is not suited to vegetarians, vegans, freegans or anyone else that is a picky eater. You have been warned.</p>
+    	<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/sandwich-1.jpg" alt="Egg and cherry tomato open sandwich">
+	</div>
+	<div data-role="popup" id="eggCressSandwich" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
+  		<h2>Egg and Cress sandwich</h2>
+  		<p>This is an egg and cress sandwich served between two slices of crusty bread. There is also some red stuff in there that could be capsicum, or might just be a nice bit of sun dried tomato. There was also some talk of roasted veggies, really depends on what we have left over. Tell us when you order if your allergic to anything and we'll try our best to cater for you. Epi pen on standby!</p>
+    	<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/sandwich-2.jpg" alt="This is an egg and cress sandwich">
+	</div>
+	<div data-role="popup" id="camenbertMangoSandwich" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
+  		<h2>Camenbert and Mango sandwich</h2>
+  		<p>This is our classic camenbert and mango open sandwich. It is serverd on a bed of bread that's probably pumpernickle, but might be something else Germanic. It has that sort of look about it. Regardless, it tastes out of this world so why not give it a go. It is normally served with quince paste, a small garnish and a smile from our wait staff.</p>
+    	<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/sandwich-3.jpg" alt="Our camenbert and mango open sandwich">
+	</div>
+	<div data-role="popup" id="clubSandwich" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
+  		<h2>Club sandwich de la maison</h2>
+  		<p>This is our take on the classic Club sandwich, where you have no choice of fillings, you will get toasted and untoasted bread, they will all be cut into quarters and no two quarters will be the same. You might even find some of the combinations most edible. We do have a feedback form, and can provide vomit bags on request. Fillings may include avocado, tomato, bacon, egg, marmalade, vegemite, coriander, chicken, ham, shrimp and anything else we find down the back of the fridge. Oh, please don't eat the wooden stick, or next time you'll get a plastic one.</p>
+    	<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/sandwich-4.jpg" alt="Our club sandwich">
+	</div>
+
+
+	<!-- end of sandwich pop up divs -->
+	<!-- start of snack pop up divs -->
+	<div data-role="popup" id="cupCakes" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
+  		<h2>Cup Cakes</h2>
+  		<p>Yes, we do have a range of seasonal cup cakes. What? You doubt us. Well, you'll just have to come back at Christmas, Easter, Halloween, The Summer Solstice, Dawn of the Dead and you'll see the changes. We don't have a gluten free range sorry. They all have sugar, wheat, colourings (the most vivid available under the counter, yeah, we will use cochineal whenever possible). They may also have nuts, fruit, butter, salt, more fruit, sometimes a candle or a sparkler or even on some occasions, a small bride and groom. Well they're both to scale. </p>
+    	<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/snack-1.jpg" alt="Cup cakes">
+	</div>
+	<div data-role="popup" id="chocoDonut" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
+  		<h2>Chocolate Donut with Sprinkles</h2>
+  		<p>This is a standard ring donut, dripping in chocolate frosting as the Americans would say. We call it icing but you can call it what you like. It tastes awesome and does a beautiful job of holding the sprinkles on and leaving those tell tale marks at the corner of your mouth so your spouse/mother/daugher/father/son knows you've been indulging. Hell YEAH with cream on!</p>
+    	<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/snack-2.jpg" alt="Chocolate donut with sprinkles">
+	</div>
+	<div data-role="popup" id="macaron" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
+  		<h2>Macarons</h2>
+  		<p>We have a delicious range of flavours in our chiller. These are lovingly handmade by someone using the finest almond meal, some creme type filling, a range of flavours and colours (go cochineal!) and a lot of patience. These simply melt in the mouth. These contain more than traces of nuts!</p>
+    	<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/snack-3.jpg" alt="Macarons. A cornucopia of Macarons.">
+	</div>
+	<div data-role="popup" id="hotJamDonut" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
+  		<h2>Hot Jam Donut</h2>
+  		<p>What is there to say. Maybe you've 'pigged out' on our veal burger and want to polish of with a donut filled with jam that is around the temperature of a solar flare. You've been burned before but you know you want to risk it all again. Will contain jam and donut. Caution, contents may be hot.</p>
+    	<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/snack-4.jpg" alt="Hot Jam Donut. Yum.">
+	</div>
+
+
+	<!-- end of snack pop up divs -->
+
+	<!-- start beverages pop up -->
+	<div data-role="popup" id="coffee" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
+  		<h2>Coffee</h2>
+  		<p>Alright, we have long, short, fat, skinny, tall, floats etc. We can whip you upa cappuccino or a latte, afogato? not a problem. Need that to go? Want cream, sugar, honey. Sing out sweetheart.</p>
+    	<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/coffee.jpg" alt="An image of coffee">
+	</div>
+	<div data-role="popup" id="tea" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
+  		<h2>Tea</h2>
+  		<p>We have a massive selection of teas. They will be served with milk or lemon. The range includes everything by Twinings (Earl grey, Russian Caravan, English Breakfast, Darjeeling, Assam ), a range of fruit, herbal and ginger teas. we have green tea, white tea, black tea, iced tea, golf tee.</p>
+    	<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/tea.jpg" alt="Fancy a cuppa?">
+	</div>
+	<div data-role="popup" id="shake" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
+  		<h2>Shakes</h2>
+  		<p>Strawberry, mango, strawberry, blackberry, strawberry, watermelon, strawberry, orange, strawberry, banana, strawberry, chocolate, strawberry, kiwi and strawberry. Oh, did we mention, we also have strawberry. You can have a thick shake, a thin shake, a mix of flavours, </p>
+    	<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/shake.jpg" alt="A strawberry milk shake">
+	</div>
+
+
+	<!-- end beverages pop up -->
+	
+    <p>We have a range of snacks, both savoury and sweet and please feel free to choose an accompanying beverage from our range.</p>
+   
+    		
+			    <ul data-role="listview">
+								   
+			    	<h2>Burgers</h2>
+			    	<li>
+			    		<a href="#vealBurger" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
+							<img src="images/burger-1.jpg" />
+							<h3>Veal Burger</h3>
+							<p>This is our delicious breadcrumbed veal burger</p>
+						</a>
+					</li>
+					<li>
+			    		<a href="#baconBurger" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
+							<img src="images/burger-2.jpg" />
+							<h3>Bacon Burger</h3>
+							<p>This is our twist on the traditional British bacon burger</p>
+						</a>
+					</li>
+					<li>
+			    		<a href="#chickenBurger" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
+							<img src="images/burger-3.jpg" />
+							<h3>Chicken Burger</h3>
+							<p>This is our Battered Chicken Burger, yum.</p>
+						</a>
+					</li>
+					
+			    </ul>
+    		
+    <ul data-role="listview">
+    <h2>Sandwiches</h2>
+    <li>
+    	<a href="#eggCherrySandwich" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
+    		<img src="images/sandwich-1.jpg" />
+    		<h3>Egg and Cherry Tomato sandwich</h3>
+    		<p>This is an open egg cheese and cherry tomato sandwich</p>
+    	</a>
+    </li>
+    <li>
+    	<a href="#eggCressSandwich" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
+    		<img src="images/sandwich-2.jpg" />
+    		<h3>Egg Cress Sandwich</h3>
+    		<p>This is an egg and cress sandwich served between two slices of crusty bread. </p>
+    	</a>
+    </li>
+    <li>
+    	<a href="#camenbertMangoSandwich" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
+    		<img src="images/sandwich-3.jpg" />
+    		<h3>Camenbert and Mango Open sandwich</h3>
+    		<p>This is our classic camenbert and mango open sandwich.</p>
+    	</a>
+    </li>
+    <li>
+    	<a href="#clubSandwich" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
+    		<img src="images/sandwich-4.jpg" />
+    		<h3>Club Sandwich</h3>
+    		<p>This is our take on the classic Club sandwich</p>
+    	</a>
+    </li>
+    
+
+    </ul>
+    <ul data-role="listview">
+    <h2>Snacks</h2>
+    	<li>
+	    	<a href="#cupCakes" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
+	    		<img src="images/snack-1.jpg" />
+	    		<h3>Cup Cakes</h3>
+	    		<p>Choose from our range of seasonal cupcakes.</p>
+	    	</a>
+    	</li>
+    	<li>
+	    	<a href="#chocoDonut" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
+	    		<img src="images/snack-2.jpg" />
+	    		<h3>Chocolate Sprinkle Donut</h3>
+	    		<p>The primary exhibit is a chocolate covered donut with sprinkles for his or her pleasure.</p>
+	    	</a>
+    	</li>
+    	<li>
+	    	<a href="#macaron" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
+	    		<img src="images/snack-3.jpg" />
+	    		<h3>Macarons</h3>
+	    		<p>We have a range of beautiful French style macaron.</p>
+	    	</a>
+    	</li>
+    	<li>
+	    	<a href="#hotJamDonut" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
+	    		<img src="images/snack-4.jpg" />
+	    		<h3>Hot Jam Donut</h3>
+	    		<p>A hot dam jonut as my daughter used to call them. With cream or ice cream.</p>
+	    	</a>
+    	</li>
+
+    </ul>
+    <ul data-role="listview">
+    <h2>Beverages</h2>
+    	<li>
+	    	<a href="#coffee" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
+	    		<img src="images/coffee.jpg" />
+	    		<h3>Coffee</h3>
+	    		<p>How do you want your coffee. Our barista will make it to your specifications. Grinding for your pleasure.</p>
+	    	</a>
+   		</li>
+   		<li>
+	    	<a href="#tea" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
+	    		<img src="images/tea.jpg" />
+	    		<h3>Tea</h3>
+	    		<p>We have a large variety of teas from all over the world.</p>
+	    	</a>
+   		</li>
+   		<li>
+	    	<a href="#shake" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
+	    		<img src="images/shake.jpg" />
+	    		<h3>Shakes</h3>
+	    		<p>We have a range of flavours for our freshly made milk shakes, as thick or thin as you like.</p>
+	    	</a>
+   		</li>
+
+
+    </ul>
+    
+    <!--
+	  <div data-role="collapsible">
+	    <h1>Burgers</h1>
+	    <div data-role="collapsibleset">
+		    <div data-role="collapsible">
+		    	<h1>Veal Burger</h1>
+		    	<p>This is our delicious breadcrumbed veal burger</p>
+		    	<img class="ui-li-thumb" src="images/burger-1.jpg" alt="Image of our delicious veal burger with cheese, purple onion and pickle " />
+		  	</div>
+		  	<div data-role="collapsible">
+		    	<h1>Bacon Burger</h1>
+		    	<p>This is our twist on the traditional British bacon burger</p>
+		    	<img class="ui-li-thumb" src="images/burger-2.jpg" alt="Image of our bacon burger with chili, pickle and onion" />
+		  	</div>
+		  	<div data-role="collapsible">
+		    	<h1>Chicken Burger</h1>
+		    	<p>This is our Battered Chicken Burger, yum.</p>
+		    	<img class="ui-li-thumb" src="images/burger-3.jpg" alt="Image of our chicken burger with lettuce and some stuff that looks like highly processed meat" />
+		  	</div>
+		</div>
+	  </div> -->
+<!--
+  <div data-role="collapsible">
+    <h1>Sandwiches</h1>
+
+   		<div data-role="collapsibleset">
+		    <div data-role="collapsible">
+		    	<h1>Sandwich 1</h1>
+		    	<p>This is an open egg cheese and cherry tomato sandwich</p>
+		    	<img src="images/sandwich-1.jpg" alt="An image of our open cheese and cherry tomato sandwich" />
+		  	</div>
+		  	<div data-role="collapsible">
+		    	<h1>Sandwich 2</h1>
+		    	<p>This is our cress, egg and roasted veggie sandwich</p>
+		    	<img src="images/sandwich-2.jpg" alt="An image of our roasted veggie, egg and cress sandwich" />
+		  	</div>
+		  	<div data-role="collapsible">
+		    	<h1>Sandwich 3</h1>
+		    	<p>This is our classic camenbert and mango open sandwich</p>
+		    	<img src="images/sandwich-3.jpg" alt="An image of our French cheese open sandwich" />
+		  	</div>
+		  	<div data-role="collapsible">
+		    	<h1>Sandwich 4</h1>
+		    	<p>This is our version of the classic Club Sandwich</p>
+		    	<img src="images/sandwich-4.jpg" alt="An image of the Club sandwich de la maison" />
+		  	</div>
+
+		</div>
+	  </div> -->
+
+<!--	<div data-role="collapsible">
+    	<h1>Snacks</h1>
+    	<div data-role="collapsibleset">
+		    <div data-role="collapsible">
+		    	<h1>Cup Cakes</h1>
+		    	<p>Choose from our range of seasonal cup cakes</p>
+		    	<img src="images/snack-1.jpg" alt="An image of our cup cakes" />
+
+		  	</div>
+		  	<div data-role="collapsible">
+		    	<h1>Chocolate Sprinkle Doughnut</h1>
+		    	<p>This is our delicious chocolate sprinkle doughnut. Can you resist?</p>
+		    	<img src="images/snack-2.jpg" alt="an image of our chocolate sprinkle doughnut" />
+		  	</div>
+		  	<div data-role="collapsible">
+		    	<h1>Macarons</h1>
+		    	<p>Real French style macarons in a range of flavours.</p>
+		    	<img src="images/snack-3.jpg" alt="An image of our French style macaron" />
+		  	</div> 
+		  	<div data-role="collapsible">
+		    	<h1>Hot Jam Doughnut</h1>
+		    	<p>Our traditonal hot damn jonut (as my daughter used to call them)</p>
+		    	<img src="images/snack-4.jpg" alt="An image of our hot jam doughnut" />
+		  	</div>
+
+		</div>
+    </div> --><!--
+    <div data-role="collapsible">
+	    <h1>Drinks</h1>
+	    <div data-role="collapsibleset">
+		    <div data-role="collapsible">
+		    	<h1>Coffee</h1>
+		    	<p>We have a range of freshly roasted and ground coffees</p>
+		    	<img src="images/coffee.jpg" alt="An image of a cup of coffee" />
+		  	</div>
+		  	<div data-role="collapsible">
+		    	<h1>Tea</h1>
+		    	<p>We have an expansive range of herbal and traditional teas</p>
+		    	<img src="images/tea.jpg" alt="An image of a cup of tea with a sugar stick" />
+		  	</div>
+		  	<div data-role="collapsible">
+		    	<h1>Milk Shake</h1>
+		    	<p>We have a range of milkshake flavours, tell us what you want</p>
+		    	<img src="images/shake.jpg" alt="An image of a strwaberry milkshake" />
+		  	</div>
+		</div>
+  	</div>
+ </div>
+    
+  </div> -->
+	<div data-role="footer">
+  		<p>Site Design by John Wilson for Deakin SIT313 Assignment 1</p>
+  	</div>
+ </div>
 
 <!-- end menu page -->
 
@@ -169,10 +387,18 @@
 <div data-role="page" id="contactUsPage">
   <div data-role="header">
     <h1>How to get in touch</h1>
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#homepage" data-icon="home" class="ui-btn-active ui-state-persist" >Home</a></li>
+        <li><a href="#menupage" data-icon="bars">Menu</a></li>
+        <li><a href="#contactUsPage" data-icon="map">Where, Who, What?</a></li>
+        <li><a href="#reservationsPage" data-icon="calendar">Bookings</a></li>
+      </ul>
+    </div>
   </div>
 
   <div data-role="main" class="ui-content">
-    <p>So, our products have enticed you and you want to know more</p>
+    <p id="theHeading">So, our products have enticed you and you want to know more</p>
     You can call us on <a href="tel:0400000111" data-role="button" rel="external" id="phone1" data-inline="true">Phone: 0400000111</a>
     <a href="tel:0355551111" data-role="button" rel="external" id="phone2" data-inline="true">Phone: 03 5555 1111</a>
     <p>We can cater for individual requirements or parties.</p>
@@ -218,17 +444,9 @@
 
     
   </div>
-<div data-role="footer">
-    <div data-role="navbar">
-      <ul>
-        <li><a href="#homepage" data-icon="home">Home</a></li>
-        <li><a href="#menupage" data-icon="bars">Menu</a></li>
-        <li><a href="#contactUsPage" data-icon="mail" class="ui-btn-active ui-state-persist">Contacts</a></li>
-        <li><a href="#reservationsPage" data-icon="calendar">Bookings</a></li>
-        <li><a href="#orderingPage" data-icon="shop">Order</a></li>
-      </ul>
-    </div>
-  </div>
+	<div data-role="footer">
+	  	<p>Site Design by John Wilson for Deakin SIT313 Assignment 1</p>
+	</div>
 </div>
 
 <!-- end contacts page -->
@@ -236,24 +454,26 @@
 <!-- reservations page -->
 <div data-role="page" id="reservationsPage">
   <div data-role="header">
-    <h1>Welcome To My Reservations Page</h1>
+    <h1>Welcome To The Reservations Page</h1>
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#homepage" data-icon="home" class="ui-btn-active ui-state-persist" >Home</a></li>
+        <li><a href="#menupage" data-icon="bars">Menu</a></li>
+        <li><a href="#contactUsPage" data-icon="map">Where, Who, What?</a></li>
+        <li><a href="#reservationsPage" data-icon="calendar">Bookings</a></li>
+      </ul>
+    </div>
   </div>
 
   <div data-role="main" class="ui-content">
-    <p>This is the reservations page. </p>
-    <p>Customers will be able to make a booking</p>
+    <p>Do you have reservations about eating here?</p>
+    <p>We would love to be able to make a reservation for you but, due to the complex nature of the accident detailed on our homepage, we suffer from a disturbance in the fabric of space/time, and while the reservations would be made for the correct day and month, they year always ends up as 2078.</p>
+    <p>Should you wish to make a booking for the far future please call us. We will require a very large non-refundable deposit and the reservation cannot be transferred to your offspring.</p>
+    <p>Don't despair though, bookings have not been necessary so far as due to (we assume) the afore mentioned disturbance in space/time, we seem to have an infinite seating capacity. Sure, service does seem to get a little slower as more patrons visit but we have yet to run out of room. However we have come close a few times to running out of crockery and cutlery so it might be adviseable to bring your own.</p>
     
    </div>
-<div data-role="footer">
-    <div data-role="navbar">
-      <ul>
-        <li><a href="#homepage" data-icon="home">Home</a></li>
-        <li><a href="#menupage" data-icon="bars">Menu</a></li>
-        <li><a href="#contactUsPage" data-icon="mail">Contacts</a></li>
-        <li><a href="#reservationsPage" data-icon="calendar" class="ui-btn-active ui-state-persist">Bookings</a></li>
-        <li><a href="#orderingPage" data-icon="shop">Order</a></li>
-      </ul>
-    </div>
+	<div data-role="footer">
+  		<p>Site Design by John Wilson for Deakin SIT313 Assignment 1</p>
   </div>
 </div>
 
@@ -262,6 +482,7 @@
 
 
 <!-- ordering page -->
+<!-- not currently being used -->
 
 <div data-role="page" id="orderingPage">
   <div data-role="header">
@@ -272,16 +493,8 @@
     <p>This is the orders page.</p>
     <p>Customers will be able to place orders here for collection</p>
   </div>
-<div data-role="footer">
-    <div data-role="navbar">
-      <ul>
-        <li><a href="#homepage" data-icon="home">Home</a></li>
-        <li><a href="#menupage" data-icon="bars">Menu</a></li>
-        <li><a href="#contactUsPage" data-icon="mail">Contacts</a></li>
-        <li><a href="#reservationsPage" data-icon="calendar">Bookings</a></li>
-        <li><a href="#orderingPage" data-icon="shop" class="ui-btn-active ui-state-persist">Order</a></li>
-      </ul>
-    </div>
+  <div data-role="footer">
+  	<p>Site Design by John Wilson for Deakin SIT313 Assignment 1</p>
   </div>
 </div>
 

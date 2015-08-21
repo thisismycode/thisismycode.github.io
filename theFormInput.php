@@ -1,26 +1,38 @@
 <?php
-require_once('Connections/mysql.php');
 /*
 This is to process the user feedback form
 It will sanitise the user input date before commiting it to the database
 
 By John Wilson Aug 2015
 */
-//require_once("dv.php");
 
-//$json = $GLOBALS['HTTP_RAW_POST_DATA']; // get the JSON string that has been passed from the webapp
+if (isset($_SERVER['HTTP_ORIGIN'])) { // Allow access from any origin
+    header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+}
+require_once('Connections/mysql.php'); // connect to the database server
+// $conn holds the database connection
+
+
+/* feedback table looks like this
+CREATE TABLE IF NOT EXISTS `userFeedback` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(80) DEFAULT NULL,
+  `feedback` varchar(600) NOT NULL,
+  `email` varchar(80) DEFAULT NULL,
+  `rating` varchar(10) NOT NULL COMMENT 'The user rating',
+  `phone` varchar(16) DEFAULT NULL,
+  `postcode` varchar(10) DEFAULT NULL,
+  `ipAddress` varchar(30) NOT NULL,
+  `dateTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `viewed` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+*/
 
 $theErrorList = array(); // create an array to hold the errors
 $theError = ''; // holds the errors
 $errorLocation = ''; // holds the id of the input box that has an error so we can change its colour
-//$theArray = json_decode($json);
-//$name = $theArray[0]; // gets the user name
-//$email = $theArray[1]; // gets the user email
-//$feedback = $theArray[2]; //gets the user feedback
-//$rating = $theArray[3]; // gets the rating
-//$postcode = $theArray[4]; // gets the postcode
-//$phone = $theArray[5]; // gets the phone number
-
 /* The POST array looks like this
 
  [_POST] => Array
@@ -31,16 +43,14 @@ $errorLocation = ''; // holds the id of the input box that has an error so we ca
             [userEmail] => john@aol.com
             [userPhone] => 12345678
             [userPostcode] => 3215
-        )
-
-        */
-$name = $_POST['userName'];
-$email = $_POST['userEmail'];
-$feedback = $_POST['userFeedback'];
+        )        */
+$name = str_replace(",", "", $_POST['userName']); // read the data from the post array and replace commas with nothing
+$email = str_replace(",", "", $_POST['userEmail']); 
+$feedback = str_replace(",","&Dagger;",$_POST['userFeedback']); // replaces any comma's (,) with an HTML character we can replace with commas later
+//echo $feedback;
 $rating = $_POST['rating'];
-$postcode = $_POST['userPostcode'];
-$phone = $_POST['userPhone'];
-
+$postcode = str_replace(",", "", $_POST['userPostcode']);
+$phone = str_replace(",", "", $_POST['userPhone']);
 $ip = getenv('HTTP_CLIENT_IP')?:
 	getenv('HTTP_X_FORWARDED_FOR')?:
 	getenv('HTTP_X_FORWARDED')?:
@@ -48,7 +58,6 @@ $ip = getenv('HTTP_CLIENT_IP')?:
 	getenv('HTTP_FORWARDED')?:
 	getenv('REMOTE_ADDR'); 
 $date = new DateTime(); // gets the current system date/time
-
 $dateTime = $date->format('Y-m-d H:i:s'); // converts date/time to yyyy-mm-dd hh:mm:ss
 
 // we need to sanitise the user input data
@@ -60,33 +69,36 @@ $postcode = trim(filter_var($postcode, FILTER_SANITIZE_STRING)); // trim the pos
 $phone = trim(filter_var($phone, FILTER_SANITIZE_STRING)); // trim the phone number and remove any markup/special characters
 
 // Validate e-mail
-if (!filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
-    //$error+="$email is a valid email address";
-} else {
-    $theError="$email is not a valid email address";
-    $errorLocation= "userEmail";
-    array_push($theErrorList,$theError, $errorLocation);
+if (strlen($email) > 0){ // the email is not compulsory so we only check it if it's length is greater than zero
+	if (!filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+	} else {
+	    $theError="$email is not a valid email address";
+	    $errorLocation= "userEmail";
+	    array_push($theErrorList,$theError, $errorLocation);
+	}
 }
-if (strlen($phone) > 1 && strlen($phone) < 8){
-	
-	// then the phone number has an entry but is invalid
+if (strlen($phone) > 1 && strlen($phone) < 8){	// then the phone number has an entry but is invalid
 	$theError="$phone is too short for a valid phone number";
 	$errorLocation = "userPhone";
 	array_push($theErrorList,$theError, $errorLocation);
-
-
 }
-if (strlen($postcode) < 4 && strlen($postcode) > 1){
-	// then the postcode is too short, but has an entry
+if (strlen($postcode) < 4 && strlen($postcode) > 1){ // then the postcode is too short, but has an entry
 	$theError="$postcode is too short for a valid postcode";
 	$errorLocation = "userPostcode";
 	array_push($theErrorList,$theError, $errorLocation);
-
-
 }
 if ($theError == ''){ // there is no error so we can proceed
-	echo "Hot to trot";
-	return true;
+	//echo $temp . "<br />";
+	//echo $feedback;
+	// we'll need to commit the data to the database
+	$sql = "INSERT INTO userFeedback (name, feedback, email, rating, phone, postcode, ipAddress) VALUES ('" . $name . "', '" . $feedback . "','" . $email . "','" . $rating . "','" . $phone . "','" . $postcode . "', '" . $ip . "')";
+	if ($conn->query($sql) === TRUE) {
+    	echo "Hot to trot";
+	} else {
+    	echo "<br />Error: " . $sql . "<br />" . $conn->error;
+	}
+	$conn->close(); // close the database connection
+	//return true;
 
 } else {
 	// there was an error so we need to send some info back regarding the error
@@ -94,11 +106,7 @@ if ($theError == ''){ // there is no error so we can proceed
 		echo $theErrorList[$x];
 		echo ","; // a separator to aid processing in the javascript
 	}
-	return false;
+	//return false;
 }
-//require_once('dv.php');
-// This needs to validate the form input
-// And then put the details into the database before returning a success to the app
-
 
 ?>
