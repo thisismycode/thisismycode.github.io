@@ -1,6 +1,6 @@
 /* myJS.js
 
-by John Wilson for SIT313
+by John Wilson 213160526 for SIT313 assignment 1 August 2015
 
 */
 var ratingClicked = ''; // holds which feedback rating has been clicked

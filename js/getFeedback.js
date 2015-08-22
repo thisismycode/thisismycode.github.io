@@ -14,7 +14,7 @@ John Wilson - 213160526 SIT313 Assignment 1 - August 2015
     var $this = $(this);
 
     //make an AJAX call to the PHP script
-    $.getJSON('https://emeraldnetworksolutions.com.au/sit313/getFeedback.php', function (response) {
+    $.getJSON('http://emeraldnetworksolutions.com.au/sit313/getFeedback.php', function (response) {
 
         //create a variable to hold the parsed output from the server
         var output = [];
@@ -49,72 +49,30 @@ John Wilson - 213160526 SIT313 Assignment 1 - August 2015
                  if (theRating == 'vpoor'){
                  	theRating = "&#9734; &#9734; &#9734; &#9734;"; // zero stars
                  }
+                 // replace ratings with stars
                  if (theRating == 'poor') theRating = "&#9734; &#9734; &#9734; &#9733;"; // one star
                  if (theRating == 'average') theRating = "&#9734; &#9734; &#9733; &#9733;"; // two stars
                  if (theRating == 'good') theRating = "&#9734; &#9733; &#9733; &#9733;"; // three stars
                  if (theRating == 'vgood') theRating = "&#9733; &#9733; &#9733; &#9733;"; // four stars, well done 
-                 output.push('<li>' + theRating + " - " + theFeedback + " - " + theName + '</li>');
+                 //output.push('<li>' + theRating + " - " + theFeedback + " - " + theName + '</li>');
                  theOutputString += '<div data-role="collapsible"><h2><span id="ratingSpan">' + theRating + '</span> : ' + theFeedback + '</h2>';
 
                  theOutputString +="<p>Left by : " + theName + '</p>';
                  theOutputString += '<p>Left on : ' + theDate + ' - from IP address : ' + theIP + '</p>';
                  theOutputString += '</div><hr />'; 
                  
-                 divOutput.push(theOutputString);
+                 //divOutput.push(theOutputString);
 
             }
 
         //if the PHP script returned an error
         } else { //output an error message
-            output.push('<li>No Data Found</li>');
+            theOutputString.push('<li>No Data Found</li>');
         }
 
         //append the output to the `data-role="content"` div on this page as a listview and trigger the `create` event on its parent to style the listview
-        //$this.children('[data-role="content"]').append('<ul data-role="listview">' + output.join('') + '</ul>').trigger('create');
-        //$this.children('[data-role="main"]').append('<ul data-role="listview">' + output.join('') + '</ul>').trigger('create');
+
         $this.children('[data-role="main"]').append(theOutputString).trigger('create');
-        //console.log(theOutputString);
+
     	});
 	});
-/*
-$(document).delegate('[id="unreadFeedback"]', 'pagecreate', function () {
-	console.log("Called the function");
-    //cache this page for later use (inside the AJAX function)
-    var $this = $(this);
-
-    //make an AJAX call to your PHP script
-    $.getJSON('getFeedback.php', function (response) {
-
-        //create a variable to hold the parsed output from the server
-        var output = [];
-
-        //if the PHP script returned a success
-        if (response.status == 'success') {
-
-            //iterate through the response rows
-            
-            for (var key in response.items) {
-
-                 //add each response row to the output variable
-                 output.push('<li>' + response.items[key] + '</li>');
-            }
-
-        //if the PHP script returned an error
-        } else {
-
-            //output an error message
-            output.push('<li>No Data Found</li>');
-        }
-
-        //append the output to the `data-role="content"` div on this page as a listview and trigger the `create` event on its parent to style the listview
-        //$this.children('[data-role="content"]').append('<ul data-role="listview">' + output.join('') + '</ul>').trigger('create');
-        $this.children('[data-role="main"]').append('<ul data-role="listview">' + output.join('') + '</ul>').trigger('create');
-    	});
-	});
-*/
-/*
-function goBackToMain(){
-    // this is to take us from the feedback review page back to the main 
-    $("body").pagecontainer("change", "../thisismycode/", { transition: 'flip', reverse: true, reload: true});
-}
-*/
