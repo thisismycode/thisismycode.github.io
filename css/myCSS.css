@@ -1,10 +1,37 @@
 /* this is to override some of the jquery mobile settings
 mostly with regard to the thumnails and popups*/
 
-.ui-list-thumb{
+
+.ui-listview .ui-li-has-thumb > .ui-btn > img:first-child{ /* tweak the default size of the thumbnails */
 	max-width: 6em;
 	max-height:6em;
+
 }
+#homepage.ui-page, #menupage.ui-page, #contactUsPage.ui-page, #reservationsPage.ui-page{
+	background: url('../images/backgrounds/background-1.jpg') no-repeat center center; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    background-size:100% 100%;
+
+}
+.ui-listview{
+	margin: 10px !important; /*set the default border on the listview */
+	max-width: 1200px; /* set the max width on the listview */
+}
+
+.ui-listview li h3{
+	margin: -0.5em 0px 0px 0.2em; /*adjust the margins for the h3 in a list */
+
+}
+.ui-listview li p{
+	white-space: normal; /* stops overflow text being hidden */
+	margin-bottom: -0.5em;
+	margin-left: 1em;
+}
+
 
 
 /* burger pop ups */
@@ -27,9 +54,7 @@ mostly with regard to the thumnails and popups*/
 	width: 80%;
     left: 10%;
     right: 10%;
-
 }
-
 
 /* beverages pop ups */
 
@@ -41,3 +66,10 @@ mostly with regard to the thumnails and popups*/
 
 
 
+#theFooter{ /* tweak the footer */
+	font-weight: normal;
+	font-size: smaller;
+	color: #999999;
+	text-align: center;
+
+}
