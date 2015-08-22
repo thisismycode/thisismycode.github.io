@@ -14,7 +14,7 @@ John Wilson - 213160526 SIT313 Assignment 1 - August 2015
     var $this = $(this);
 
     //make an AJAX call to the PHP script
-    $.getJSON('getFeedback.php', function (response) {
+    $.getJSON('https://emeraldnetworksolutions.com.au/sit313/getFeedback.php', function (response) {
 
         //create a variable to hold the parsed output from the server
         var output = [];
