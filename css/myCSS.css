@@ -5,6 +5,8 @@ mostly with regard to the thumnails and popups*/
 .ui-listview .ui-li-has-thumb > .ui-btn > img:first-child{ /* tweak the default size of the thumbnails */
 	max-width: 6em;
 	max-height:6em;
+	margin-left: 5px;
+	margin-top: 8px;
 
 }
 #homepage.ui-page, #menupage.ui-page, #contactUsPage.ui-page, #reservationsPage.ui-page{
@@ -25,12 +27,12 @@ mostly with regard to the thumnails and popups*/
 }
 
 .ui-listview li h3{
-	margin: -0.5em 0px 0px 0.2em; /*adjust the margins for the h3 in a list */
+	margin: -0.45em 0px 0px 0.7em; /*adjust the margins for the h3 in a list */
 }
 .ui-listview li p{
 	white-space: normal; /* stops overflow text being hidden */
 	margin-bottom: -0.5em;
-	margin-left: 1em;
+	margin-left: 1.5em;
 }
 
 

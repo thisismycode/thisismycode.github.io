@@ -199,6 +199,8 @@ function feedbackSuccess(){ // do stuff here when the feedback was successfully 
 	$('#phone1').hide();
 	$('#phone2').hide();
 	$('#theFeedbackForm').hide();
+	$('#feedbackThanks').fadeIn();
+	//$('#feedbackPanel').show();
 
 
 
