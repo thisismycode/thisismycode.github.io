@@ -84,6 +84,7 @@ function askQuestion(theRating){
 	if (theRating =="vgood"){
 		theQuestion = "Super, that pleases us greatly. Any suggestions for improvement would be appreciated.";
 	}
+	$('#ratingDiv').hide();
 	$('#feedbackLabel').html(theQuestion);
 	$('#additionalDetails').fadeIn();
 

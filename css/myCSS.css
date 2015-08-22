@@ -13,9 +13,11 @@ mostly with regard to the thumnails and popups*/
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-
     background-size:100% 100%;
 
+}
+#homepage p, #reservationsPage p {
+	max-width: 1000px; /* sets the max width of the text <p> tags on the homepage and reservationsPage */
 }
 .ui-listview{
 	margin: 10px !important; /*set the default border on the listview */
@@ -24,7 +26,6 @@ mostly with regard to the thumnails and popups*/
 
 .ui-listview li h3{
 	margin: -0.5em 0px 0px 0.2em; /*adjust the margins for the h3 in a list */
-
 }
 .ui-listview li p{
 	white-space: normal; /* stops overflow text being hidden */
@@ -33,35 +34,35 @@ mostly with regard to the thumnails and popups*/
 }
 
 
-
 /* burger pop ups */
-#vealBurger-popup, #baconBurger-popup, #chickenBurger-popup {
-    width: 80%;
-    left: 10%;
-    right: 10%;
+#vealBurger-popup, #baconBurger-popup, #chickenBurger-popup, #chips-popup {
+    width: 70%;
+    left: 15%;
+    right: 15%;
+
 }
 
 /* sandwich pop ups */
 
 #eggCherrySandwich-popup, #eggCressSandwich-popup, #camenbertMangoSandwich-popup, #clubSandwich-popup{
-	width: 80%;
-    left: 10%;
-    right: 10%;
+	width: 70%;
+    left: 15%;
+    right: 15%;
 }
 
 /* snack pop ups */
 #cupCakes-popup, #chocoDonut-popup, #macaron-popup, #hotJamDonut-popup{
-	width: 80%;
-    left: 10%;
-    right: 10%;
+	width: 70%;
+    left: 15%;
+    right: 15%;
 }
 
 /* beverages pop ups */
 
 #coffee-popup, #tea-popup, #shake-popup{
-	width: 80%;
-    left: 10%;
-    right: 10%;
+	width: 70%;
+    left: 15%;
+    right: 15%;
 }
 
 
@@ -71,5 +72,6 @@ mostly with regard to the thumnails and popups*/
 	font-size: smaller;
 	color: #999999;
 	text-align: center;
+
 
 }
