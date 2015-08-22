@@ -9,7 +9,7 @@ mostly with regard to the thumnails and popups*/
 	margin-top: 8px;
 
 }
-#homepage.ui-page, #menupage.ui-page, #contactUsPage.ui-page, #reservationsPage.ui-page{
+#homepage.ui-page, #menupage.ui-page, #contactUsPage.ui-page, #reservationsPage.ui-page, #readFeedback.ui-page{
 	background: url('../images/backgrounds/background-1.jpg') no-repeat center center; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -18,7 +18,7 @@ mostly with regard to the thumnails and popups*/
     background-size:100% 100%;
 
 }
-#homepage p, #reservationsPage p {
+#homepage p, #reservationsPage p, #readFeedback p {
 	max-width: 1000px; /* sets the max width of the text <p> tags on the homepage and reservationsPage */
 }
 .ui-listview{
@@ -68,7 +68,6 @@ mostly with regard to the thumnails and popups*/
 }
 
 
-
 #theFooter{ /* tweak the footer */
 	font-weight: normal;
 	font-size: smaller;
@@ -76,4 +75,16 @@ mostly with regard to the thumnails and popups*/
 	text-align: center;
 
 
+}
+#ratingSpan{ /* make the stars gold and bigger */
+	font-size: 150%;
+	font-weight: bolder;
+	color: gold;
+}
+#backLink{
+	text-align: right;
+	float: right;
+	color: blue;
+	margin-right: 20px;
+	margin-top: 10px;
 }

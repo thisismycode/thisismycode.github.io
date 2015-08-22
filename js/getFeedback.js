@@ -1,28 +1,30 @@
 /*
 This is the JS for handling the reading of the feedback
 It'll need to communicate to the PHP/DB host
-
+John Wilson - 213160526 SIT313 Assignment 1 - August 2015
 
 */
 
 
-//run the following code whenever a new pseudo-page is created
-//$(document).delegate('[data-role="page"]', 'pagecreate', function () {
+//run the following code whenever the readFeedback pseudo-page is created
+
 	$(document).delegate('[id="readFeedback"]', 'pagecreate', function () {
 	console.log("Called the function");
     //cache this page for later use (inside the AJAX function)
     var $this = $(this);
 
-    //make an AJAX call to your PHP script
-    $.getJSON('getFeedback.php?read=1', function (response) {
+    //make an AJAX call to the PHP script
+    $.getJSON('getFeedback.php', function (response) {
 
         //create a variable to hold the parsed output from the server
         var output = [];
+        var divOutput = [];
+        var theOutputString = '';
 
         //if the PHP script returned a success
         if (response.status == 'success') {
 
-            output.push('<li>' + "Rating" + "  -  " + " Feedback " + "  -  " + "  Name  " + '</li>');
+            //output.push('<li>' + "Rating" + "  -  " + " Feedback " + "  -  " + "  Name  " + '</li>');
             for (var key in response.items) { //iterate through the response rows
 
                  //add each response row to the output variable
@@ -40,14 +42,26 @@ It'll need to communicate to the PHP/DB host
                  var tempFeedback = theSplit[2];
                  var theFeedback = tempFeedback.replace(/&Dagger;/g, ","); // put the commas back in
                  var theRating = theSplit[4];
+                 var theDate = theSplit[8];
+                 var theIP = theSplit[7];
+                 var theEmail = theSplit[3];
+                 if (theName == '') theName = 'Anonymous'; // if the name is blank
                  if (theRating == 'vpoor'){
-                 	theRating = "Very Poor";
+                 	theRating = "&#9734; &#9734; &#9734; &#9734;"; // zero stars
                  }
-                 if (theRating == 'poor') theRating = "Poor";
-                 if (theRating == 'average') theRating = "Average";
-                 if (theRating == 'good') theRating = "Good";
-                 if (theRating == 'vgood') theRating = "Very Good";
+                 if (theRating == 'poor') theRating = "&#9734; &#9734; &#9734; &#9733;"; // one star
+                 if (theRating == 'average') theRating = "&#9734; &#9734; &#9733; &#9733;"; // two stars
+                 if (theRating == 'good') theRating = "&#9734; &#9733; &#9733; &#9733;"; // three stars
+                 if (theRating == 'vgood') theRating = "&#9733; &#9733; &#9733; &#9733;"; // four stars, well done 
                  output.push('<li>' + theRating + " - " + theFeedback + " - " + theName + '</li>');
+                 theOutputString += '<div data-role="collapsible"><h2><span id="ratingSpan">' + theRating + '</span> : ' + theFeedback + '</h2>';
+
+                 theOutputString +="<p>Left by : " + theName + '</p>';
+                 theOutputString += '<p>Left on : ' + theDate + ' - from IP address : ' + theIP + '</p>';
+                 theOutputString += '</div><hr />'; 
+                 
+                 divOutput.push(theOutputString);
+
             }
 
         //if the PHP script returned an error
@@ -57,10 +71,12 @@ It'll need to communicate to the PHP/DB host
 
         //append the output to the `data-role="content"` div on this page as a listview and trigger the `create` event on its parent to style the listview
         //$this.children('[data-role="content"]').append('<ul data-role="listview">' + output.join('') + '</ul>').trigger('create');
-        $this.children('[data-role="main"]').append('<ul data-role="listview">' + output.join('') + '</ul>').trigger('create');
+        //$this.children('[data-role="main"]').append('<ul data-role="listview">' + output.join('') + '</ul>').trigger('create');
+        $this.children('[data-role="main"]').append(theOutputString).trigger('create');
+        //console.log(theOutputString);
     	});
 	});
-
+/*
 $(document).delegate('[id="unreadFeedback"]', 'pagecreate', function () {
 	console.log("Called the function");
     //cache this page for later use (inside the AJAX function)
@@ -95,3 +111,10 @@ $(document).delegate('[id="unreadFeedback"]', 'pagecreate', function () {
         $this.children('[data-role="main"]').append('<ul data-role="listview">' + output.join('') + '</ul>').trigger('create');
     	});
 	});
+*/
+/*
+function goBackToMain(){
+    // this is to take us from the feedback review page back to the main 
+    $("body").pagecontainer("change", "../thisismycode/", { transition: 'flip', reverse: true, reload: true});
+}
+*/

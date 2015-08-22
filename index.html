@@ -13,9 +13,10 @@
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
 
 <script src="js/myJS.js"></script> <!-- load my custom javascript functions -->
+<script src="js/getFeedback.js"></script> <!-- load my custom scripts for reading the feedback -->
 
 <script>
-        $(document).on('pageshow', '#contactUsPage',function(e,data){   
+        $(document).on('pageshow', '#contactUsPage',function(e,data){   // works out height map should be for screen size
          
             $('#content').height(getRealContentHeight());
              
@@ -68,6 +69,7 @@
         <li><a href="#menupage" data-icon="bars">Menu</a></li>
         <li><a href="#contactUsPage" data-icon="star">Where, Who, What?</a></li>
         <li><a href="#reservationsPage" data-icon="calendar">Reservations</a></li>
+        <li><a href="#readFeedback" data-icon="mail">Read Feedback</a></li>
       </ul>
     </div>
   </div>
@@ -101,6 +103,7 @@
         <li><a href="#menupage" data-icon="bars" class="ui-btn-active ui-state-persist">Menu</a></li>
         <li><a href="#contactUsPage" data-icon="star">Where, Who, What?</a></li>
         <li><a href="#reservationsPage" data-icon="calendar">Reservations</a></li>
+        <li><a href="#readFeedback" data-icon="mail">Read Feedback</a></li>
       </ul>
     </div>
   </div>
@@ -346,6 +349,7 @@
         <li><a href="#menupage" data-icon="bars">Menu</a></li>
         <li><a href="#contactUsPage" data-icon="star" class="ui-btn-active ui-state-persist">Where, Who, What?</a></li>
         <li><a href="#reservationsPage" data-icon="calendar">Reservations</a></li>
+        <li><a href="#readFeedback" data-icon="mail">Read Feedback</a></li>
       </ul>
     </div>
   </div>
@@ -435,6 +439,7 @@
         <li><a href="#menupage" data-icon="bars">Menu</a></li>
         <li><a href="#contactUsPage" data-icon="star">Where, Who, What?</a></li>
         <li><a href="#reservationsPage" data-icon="calendar"  class="ui-btn-active ui-state-persist">Reservations</a></li>
+        <li><a href="#readFeedback" data-icon="mail">Read Feedback</a></li>
       </ul>
     </div>
   </div>
@@ -476,6 +481,29 @@
 
 
 <!-- end ordering page -->
+<!-- start of read feedback page -->
+
+	<div data-role="page" id="readFeedback" data-theme="b">
+		<div data-role="header">
+    		<h1>Have a look at the feedback</h1>
+    		<div data-role="navbar">
+		      <ul>
+		        <li><a href="#homepage" data-icon="home">Home</a></li>
+		        <li><a href="#menupage" data-icon="bars">Menu</a></li>
+		        <li><a href="#contactUsPage" data-icon="star">Where, Who, What?</a></li>
+		        <li><a href="#reservationsPage" data-icon="calendar" >Reservations</a></li>
+		        <li><a href="#readFeedback" data-icon="mail" class="ui-btn-active ui-state-persist">Read Feedback</a></li>
+		      </ul>
+		    </div>
+    		</div>
+  			<div data-role="main" class="ui-content">
+			    <p>Here's the feedback that has been left for Sweet Soul Sister</p>	    
+  			</div>
+  			<div data-role="footer">
+    		</div>
+		</div>
+
+<!-- end of read feedback page -->
 </body>
 
 
