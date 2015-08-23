@@ -95,3 +95,10 @@ mostly with regard to the thumnails and popups*/
 	font-size:180%;
 	
 }
+#feedBackError{ /* to change the colour of the text etc */
+
+	color: red;
+	font-size: 170%;
+
+
+}
