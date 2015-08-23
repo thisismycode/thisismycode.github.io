@@ -158,8 +158,8 @@ function processTheFeedback(){
 
 // Assign handlers immediately after making the request,
 // and remember the jqxhr object for this request
-var jqxhr = $.post( "theFormInput.php", $('#theFeedbackForm').serialize(), function(data) { // for local hosting only
-//var jqxhr = $.post( "https://emeraldnetworksolutions.com.au/sit313/theFormInput.php", $('#theFeedbackForm').serialize(), function(data) {
+//var jqxhr = $.post( "theFormInput.php", $('#theFeedbackForm').serialize(), function(data) { // for local hosting only
+var jqxhr = $.post( "https://emeraldnetworksolutions.com.au/sit313/theFormInput.php", $('#theFeedbackForm').serialize(), function(data) {
 //var jqxhr = $.post( "http://emeraldnetworksolutions.com.au/sit313/test.php?callback=", $('#theFeedbackForm').serialize(), function(data) {
 
   //alert(  data  );
