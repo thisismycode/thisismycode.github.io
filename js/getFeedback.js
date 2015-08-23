@@ -61,7 +61,7 @@ $(document).delegate('[id="readFeedback"]', 'pagecreate', function () {
 
         //if the PHP script returned an error
         } else { //output an error message
-        	theOutputString = '<li>No Data Found</li>';
+        	theOutputString = '<p id="feedBackError">There was no feedback to be found. I mean we looked everywhere, under the rug, down behind the sofa, we even checked in the bin. Is it possible that no-one cares enough or has something gone wrong?</p>';
         }
 
         //append the output to the `data-role="main"` div on this page and trigger the `create` event on its parent to style the content
