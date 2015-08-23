@@ -1,512 +1,480 @@
 <!-- John Wilson 213160526 SIT313 Assignment 1 August 2015 -->
 <html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+		<link rel="stylesheet" href="css/myCSS.css">
+		<script src="js/jquery-1.11.3.min.js"></script><!-- load jquery -->
+		<script src="js/jquery.mobile-1.4.5.min.js"></script><!-- load jquery mobile -->
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script><!-- google maps -->
+		<script src="js/myJS.js"></script> <!-- load my custom javascript functions -->
+		<script src="js/getFeedback.js"></script> <!-- load my custom scripts for reading the feedback -->
+		<script>
+		        $(document).on('pageshow', '#contactUsPage',function(e,data){   // works out height map should be for screen size
 
-<!--
-<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
-<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
-<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
-<link rel="stylesheet" href="css/myCSS.css">
-<script src="js/jquery-1.11.3.min.js"></script>
-<script src="js/jquery.mobile-1.4.5.min.js"></script>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+		        	$('#content').height(getRealContentHeight());
 
-<script src="js/myJS.js"></script> <!-- load my custom javascript functions -->
-<script src="js/getFeedback.js"></script> <!-- load my custom scripts for reading the feedback -->
-
-<script>
-        $(document).on('pageshow', '#contactUsPage',function(e,data){   // works out height map should be for screen size
-         
-            $('#content').height(getRealContentHeight());
-             
-           // This is the minimum zoom level that we'll allow
-           var minZoomLevel = 11;
-           var myLatLong = {lat: -38.112372, lng: 144.348584};
-           var altLatLong = {lat: -38.05, lng: 144.30};
-
- 
-           var map = new google.maps.Map(document.getElementById('map_canvas'), {
-              zoom: minZoomLevel,
-           //   center: new google.maps.LatLng(-38.112372, 144.348584),
-           		center: altLatLong,
-              mapTypeId: google.maps.MapTypeId.ROADMAP
-           }); 
-           var marker = new google.maps.Marker({
-			    position: myLatLong,
-   				map: map,
-    			title: 'Sweet Soul Sister'
-  			});
-         
-        });
- 
-        function getRealContentHeight() {
-            var header = $.mobile.activePage.find("div[data-role='header']:visible");
-            var footer = $.mobile.activePage.find("div[data-role='footer']:visible");
-            var content = $.mobile.activePage.find("div[data-role='content']:visible:visible");
-            var viewport_height = $(window).height();
- 
-            var content_height = viewport_height - header.outerHeight() - footer.outerHeight();
-            if((content.outerHeight() - header.outerHeight() - footer.outerHeight()) <= viewport_height) {
-                content_height -= (content.outerHeight() - content.height());
-            } 
-            return content_height/2;
-        }
-    </script> 
-
-</head>
-<body onLoad="isMobile();"> <!-- checks if we are on a mobile browser otherwise we want to hide the telephone dial links -->
+		           // This is the minimum zoom level that we'll allow
+		           var minZoomLevel = 11;
+		           var myLatLong = {lat: -38.112372, lng: 144.348584};
+		           var altLatLong = {lat: -38.05, lng: 144.30};
 
 
-<!-- begin homepage -->
+		           var map = new google.maps.Map(document.getElementById('map_canvas'), {
+		           	zoom: minZoomLevel,
+		           	center: altLatLong,
+		           	mapTypeId: google.maps.MapTypeId.ROADMAP
+		           }); 
+		           var marker = new google.maps.Marker({
+		           	position: myLatLong,
+		           	map: map,
+		           	title: 'Sweet Soul Sister'
+		           });
 
-<div data-role="page" data-theme="b" id="homepage">
-  <div data-role="header" data-position="fixed">
-    <h1>Sweet Soul Sister</h1>
-    <div data-role="navbar">
-      <ul>
-        <li><a href="#homepage" data-icon="home" class="ui-btn-active ui-state-persist" >Home</a></li>
-        <li><a href="#menupage" data-icon="bars">Menu</a></li>
-        <li><a href="#contactUsPage" data-icon="star">Where, Who, What?</a></li>
-        <li><a href="#reservationsPage" data-icon="calendar">Reservations</a></li>
-        <li><a href="#readFeedback" data-icon="mail">Read Feedback</a></li>
-      </ul>
-    </div>
-  </div>
+		       });
 
-  <div data-role="main" class="ui-content">
-    <h2>Welcome to Sweet Soul Sister, for all your snacking satisfaction.</h2>
-    <p>We were established in 2078 and due to an accident involving a 
-    <span id='accidentSpan' onClick='showAccidentDetails();'>macaron pipe bag, an unattended mop bucket and some bleach</span>
-     a freak wormhole opened up and we found ourselves in 2015. Not used to the primitive nature of the Internet in this era, this is the best website we could achieve, as in our time, ... sorry no, we can't tell you anything about our time, that would violate some principal or other.  </p>
-    
-    <p>Now don't despair, while we can't tell you anything about our own time we can give you a practical demonstration of the advances in culinary cuisine that have happened / will be going to have happened in the next/last 63 years. My, time travel makes tenses confusing.</p>
-    <p>Please feel free to drop by and sample this 'out of this time' experience. And do hurry, as if an accident happened once before, it could happen again, then where would we be?</p> 
+		        function getRealContentHeight() {
+		        	var header = $.mobile.activePage.find("div[data-role='header']:visible");
+		        	var footer = $.mobile.activePage.find("div[data-role='footer']:visible");
+		        	var content = $.mobile.activePage.find("div[data-role='content']:visible:visible");
+		        	var viewport_height = $(window).height();
 
-    
-  </div>
-  <div data-role="footer" data-position="fixed">
-  	<p id="theFooter">Site Design by John Wilson for Deakin SIT313 Assignment 1</p>
-  </div>
-</div> 
-
-<!-- end homepage -->
-
-<!-- begin menupage -->
-
-<div data-role="page" data-theme="b" id="menupage">
-  <div data-role="header">
-    <h1>Our Menu</h1>
-    <div data-role="navbar" data-position="fixed">
-      <ul>
-        <li><a href="#homepage" data-icon="home" >Home</a></li>
-        <li><a href="#menupage" data-icon="bars" class="ui-btn-active ui-state-persist">Menu</a></li>
-        <li><a href="#contactUsPage" data-icon="star">Where, Who, What?</a></li>
-        <li><a href="#reservationsPage" data-icon="calendar">Reservations</a></li>
-        <li><a href="#readFeedback" data-icon="mail">Read Feedback</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div data-role="main" class="ui-content">
-  <!-- pop up divs for the burgers -->
-  	<div data-role="popup" id="vealBurger" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
-  		<h2>The Veal Burger</h2>
-  		<p>Our veal burger is beautifully breadcrumbed and shallow fried in lard for maximum indulgence. It is served with melted tasty cheese, red onion and gherkin.</p>
-    	<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/burger-1.jpg" alt="Veal Burger">
-	</div>
-	<div data-role="popup" id="baconBurger" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
-		<h2>Our Bacon Burger</h2>
-		<p>This is our mouthwatering, futuristic take on the classic British bacon roll. There is no burger to be found in this, instead it's all bacon, chili, onion and pickle served in a toasted bun.</p>
-    	<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/burger-2.jpg" alt="Bacon Burger">
-	</div>
-	<div data-role="popup" id="chickenBurger" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
-		<h2>Chicken Burger</h2>
-		<p>This is our beer battered chicken burger. We can't tell you the brand of beer but it's <strong>V</strong>ictoria's <strong>B</strong>est. (Wink Wink).</p>
-		<p>It is served in a seeded bun and has some really aneamic looking cheese.</p><p>It also has a couple of pieces of very plastic looking highly processed meat, probably mechanically recovered for added value.</p><p>Anyway, regardless of what it looks like it probably tastes better.</p>
-    	<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/burger-3.jpg" alt="Chicken Burger">
-	</div>
-	<div data-role="popup" id="chips" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
-		<h2>Chips / French Fries</h2>
-		<p>The perfect companion for your burger. You can have Chicken Salt, Chili Salt or no salt. Vinegar? not a problem. Sauce, Mayo, Salad Cream, Curry Sauce, BBQ, it's all good here. Saucy enough?</p>
-    	<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/chips.jpg" alt="Chips or French Fries">
-	</div>
-	<!-- end of burger pop up divs -->
-
-	<!-- pop up divs for the sandwiches -->
-	<div data-role="popup" id="eggCherrySandwich" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
-  		<h2>Egg and Cherry Tomato open sandwich</h2>
-  		<p>Our egg and cherry tomato and cheese sandwich is served on a piece of bread with some really spicy salami, some rocket (or is it wilted spinach) and a drizzle of extra virgin olive oil. The avocado is optional and this dish is not suited to vegetarians, vegans, freegans or anyone else that is a picky eater. You have been warned.</p>
-    	<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/sandwich-1.jpg" alt="Egg and cherry tomato open sandwich">
-	</div>
-	<div data-role="popup" id="eggCressSandwich" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
-  		<h2>Egg and Cress sandwich</h2>
-  		<p>This is an egg and cress sandwich served between two slices of crusty bread. There is also some red stuff in there that could be capsicum, or might just be a nice bit of sun dried tomato. There was also some talk of roasted veggies, really depends on what we have left over. Tell us when you order if your allergic to anything and we'll try our best to cater for you. Epi pen on standby!</p>
-    	<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/sandwich-2.jpg" alt="This is an egg and cress sandwich">
-	</div>
-	<div data-role="popup" id="camenbertMangoSandwich" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
-  		<h2>Camenbert and Mango sandwich</h2>
-  		<p>This is our classic camenbert and mango open sandwich. It is serverd on a bed of bread that's probably pumpernickle, but might be something else Germanic. It has that sort of look about it. Regardless, it tastes out of this world so why not give it a go. It is normally served with quince paste, a small garnish and a knowing smile from our wait staff.</p>
-    	<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/sandwich-3.jpg" alt="Our camenbert and mango open sandwich">
-	</div>
-	<div data-role="popup" id="clubSandwich" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
-  		<h2>Club sandwich de la maison</h2>
-  		<p>This is our take on the classic Club sandwich, where you have no choice of fillings, you will get toasted and untoasted bread, they will all be cut into quarters and no two quarters will be the same. You might even find some of the combinations most edible. We do have a feedback form, and can provide vomit bags on request. Fillings may include avocado, tomato, bacon, egg, marmalade, vegemite, coriander, chicken, ham, shrimp and anything else we find down the back of the fridge. Oh, please don't eat the wooden stick, or next time you'll get a plastic one.</p>
-    	<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/sandwich-4.jpg" alt="Our club sandwich">
-	</div>
+		        	var content_height = viewport_height - header.outerHeight() - footer.outerHeight();
+		        	if((content.outerHeight() - header.outerHeight() - footer.outerHeight()) <= viewport_height) {
+		        		content_height -= (content.outerHeight() - content.height());
+		        	} 
+		        	return content_height/2;
+		        }
+		</script> 
+	</head>
+	<body onLoad="isMobile();"> <!-- checks if we are on a mobile browser otherwise we want to hide the telephone dial links -->
 
 
-	<!-- end of sandwich pop up divs -->
-	<!-- start of snack pop up divs -->
-	<div data-role="popup" id="cupCakes" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
-  		<h2>Cup Cakes</h2>
-  		<p>Yes, we do have a range of seasonal cup cakes. What? You doubt us. Well, you'll just have to come back at Christmas, Easter, Halloween, The Summer Solstice, Dawn of the Dead and you'll see the changes. We don't have a gluten free range sorry. They all have sugar, wheat, colourings (the most vivid available under the counter, yeah, we will use cochineal whenever possible). They may also have nuts, fruit, butter, salt, more fruit, sometimes a candle or a sparkler or even on some occasions, a small bride and groom. Well they're both to scale. </p>
-    	<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/snack-1.jpg" alt="Cup cakes">
-	</div>
-	<div data-role="popup" id="chocoDonut" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
-  		<h2>Chocolate Donut with Sprinkles</h2>
-  		<p>This is a standard ring donut, dripping in chocolate frosting as the Americans would say. We call it icing but you can call it what you like. It tastes awesome and does a beautiful job of holding the sprinkles on and leaving those tell tale marks at the corner of your mouth so your spouse/mother/daugher/father/son knows you've been indulging. Hell YEAH with cream on!</p>
-    	<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/snack-2.jpg" alt="Chocolate donut with sprinkles">
-	</div>
-	<div data-role="popup" id="macaron" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
-  		<h2>Macarons</h2>
-  		<p>We have a delicious range of flavours in our chiller. These are lovingly handmade by someone using the finest almond meal, some creme type filling, a range of flavours and colours (go cochineal!) and a lot of patience. These simply melt in the mouth. These contain more than traces of nuts!</p>
-    	<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/snack-3.jpg" alt="Macarons. A cornucopia of Macarons.">
-	</div>
-	<div data-role="popup" id="hotJamDonut" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
-  		<h2>Hot Jam Donut</h2>
-  		<p>What is there to say. Maybe you've 'pigged out' on our veal burger and want to polish of with a donut filled with jam that is around the temperature of a solar flare. You've been burned before but you know you want to risk it all again. Will contain jam and donut. Caution, contents may be hot.</p>
-    	<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/snack-4.jpg" alt="Hot Jam Donut. Yum.">
-	</div>
+		<!-- begin homepage -->
+
+		<div data-role="page" data-theme="b" id="homepage">
+			<div data-role="header" data-position="fixed">
+				<h1>Sweet Soul Sister</h1>
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#homepage" data-icon="home" class="ui-btn-active ui-state-persist" >Home</a></li>
+						<li><a href="#menupage" data-icon="bars">Menu</a></li>
+						<li><a href="#contactUsPage" data-icon="star">Where, Who, What?</a></li>
+						<li><a href="#reservationsPage" data-icon="calendar">Reservations</a></li>
+						<li><a href="#readFeedback" data-icon="mail">Read Feedback</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div data-role="main" class="ui-content">
+				<h2>Welcome to Sweet Soul Sister, for all your snacking satisfaction.</h2>
+				<p>We were established in 2078 and due to an accident involving a 
+					<span id='accidentSpan' onClick='showAccidentDetails();'>macaron pipe bag, an unattended mop bucket and some bleach</span>
+					a freak wormhole opened up and we found ourselves in 2015. Not used to the primitive nature of the Internet in this era, this is the best website we could achieve, as in our time, ... sorry no, we can't tell you anything about our time, that would violate some principal or other.  </p>
+
+					<p>Now don't despair, while we can't tell you anything about our own time we can give you a practical demonstration of the advances in culinary cuisine that have happened / will be going to have happened in the next/last 63 years. My, time travel makes tenses confusing.</p>
+					<p>Please feel free to drop by and sample this 'out of this time' experience. And do hurry, as if an accident happened once before, it could happen again, then where would we be?</p> 
 
 
-	<!-- end of snack pop up divs -->
+			</div>
+			<div data-role="footer" data-position="fixed">
+				<p id="theFooter">Site Design by John Wilson for Deakin SIT313 Assignment 1</p>
+			</div>
+		</div> 
 
-	<!-- start beverages pop up -->
-	<div data-role="popup" id="coffee" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
-  		<h2>Coffee</h2>
-  		<p>Alright, we have long, short, fat, skinny, tall, floats etc. We can whip you upa cappuccino or a latte, afogato? not a problem. Need that to go? Want cream, sugar, honey. Sing out sweetheart.</p>
-    	<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/coffee.jpg" alt="An image of coffee">
-	</div>
-	<div data-role="popup" id="tea" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
-  		<h2>Tea</h2>
-  		<p>We have a massive selection of teas. They will be served with milk or lemon. The range includes everything by Twinings (Earl grey, Russian Caravan, English Breakfast, Darjeeling, Assam ), a range of fruit, herbal and ginger teas. we have green tea, white tea, black tea, iced tea, golf tee.</p>
-    	<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/tea.jpg" alt="Fancy a cuppa?">
-	</div>
-	<div data-role="popup" id="shake" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
-  		<h2>Shakes</h2>
-  		<p>Strawberry, mango, strawberry, blackberry, strawberry, watermelon, strawberry, orange, strawberry, banana, strawberry, chocolate, strawberry, kiwi and strawberry. Oh, did we mention, we also have strawberry. You can have a thick shake, a thin shake, a mix of flavours, </p>
-    	<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/shake.jpg" alt="A strawberry milk shake">
-	</div>
+		<!-- end homepage -->
+
+		<!-- begin menupage -->
+
+		<div data-role="page" data-theme="b" id="menupage">
+			<div data-role="header">
+				<h1>Our Menu</h1>
+				<div data-role="navbar" data-position="fixed">
+					<ul>
+						<li><a href="#homepage" data-icon="home" >Home</a></li>
+						<li><a href="#menupage" data-icon="bars" class="ui-btn-active ui-state-persist">Menu</a></li>
+						<li><a href="#contactUsPage" data-icon="star">Where, Who, What?</a></li>
+						<li><a href="#reservationsPage" data-icon="calendar">Reservations</a></li>
+						<li><a href="#readFeedback" data-icon="mail">Read Feedback</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div data-role="main" class="ui-content">
+				<!-- pop up divs for the burgers -->
+				<div data-role="popup" id="vealBurger" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
+					<h2>The Veal Burger</h2>
+					<p>Our veal burger is beautifully breadcrumbed and shallow fried in lard for maximum indulgence. It is served with melted tasty cheese, red onion and gherkin.</p>
+					<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/burger-1.jpg" alt="Veal Burger">
+				</div>
+				<div data-role="popup" id="baconBurger" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
+					<h2>Our Bacon Burger</h2>
+					<p>This is our mouthwatering, futuristic take on the classic British bacon roll. There is no burger to be found in this, instead it's all bacon, chili, onion and pickle served in a toasted bun.</p>
+					<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/burger-2.jpg" alt="Bacon Burger">
+				</div>
+				<div data-role="popup" id="chickenBurger" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
+					<h2>Chicken Burger</h2>
+					<p>This is our beer battered chicken burger. We can't tell you the brand of beer but it's <strong>V</strong>ictoria's <strong>B</strong>est. (Wink Wink).</p>
+					<p>It is served in a seeded bun and has some really aneamic looking cheese.</p><p>It also has a couple of pieces of very plastic looking highly processed meat, probably mechanically recovered for added value.</p><p>Anyway, regardless of what it looks like it probably tastes better.</p>
+					<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/burger-3.jpg" alt="Chicken Burger">
+				</div>
+				<div data-role="popup" id="chips" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
+					<h2>Chips / French Fries</h2>
+					<p>The perfect companion for your burger. You can have Chicken Salt, Chili Salt or no salt. Vinegar? not a problem. Sauce, Mayo, Salad Cream, Curry Sauce, BBQ, it's all good here. Saucy enough?</p>
+					<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/chips.jpg" alt="Chips or French Fries">
+				</div>
+				<!-- end of burger pop up divs -->
+
+				<!-- pop up divs for the sandwiches -->
+				<div data-role="popup" id="eggCherrySandwich" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
+					<h2>Egg and Cherry Tomato open sandwich</h2>
+					<p>Our egg and cherry tomato and cheese sandwich is served on a piece of bread with some really spicy salami, some rocket (or is it wilted spinach) and a drizzle of extra virgin olive oil. The avocado is optional and this dish is not suited to vegetarians, vegans, freegans or anyone else that is a picky eater. You have been warned.</p>
+					<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/sandwich-1.jpg" alt="Egg and cherry tomato open sandwich">
+				</div>
+				<div data-role="popup" id="eggCressSandwich" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
+					<h2>Egg and Cress sandwich</h2>
+					<p>This is an egg and cress sandwich served between two slices of crusty bread. There is also some red stuff in there that could be capsicum, or might just be a nice bit of sun dried tomato. There was also some talk of roasted veggies, really depends on what we have left over. Tell us when you order if your allergic to anything and we'll try our best to cater for you. Epi pen on standby!</p>
+					<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/sandwich-2.jpg" alt="This is an egg and cress sandwich">
+				</div>
+				<div data-role="popup" id="camenbertMangoSandwich" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
+					<h2>Camenbert and Mango sandwich</h2>
+					<p>This is our classic camenbert and mango open sandwich. It is serverd on a bed of bread that's probably pumpernickle, but might be something else Germanic. It has that sort of look about it. Regardless, it tastes out of this world so why not give it a go. It is normally served with quince paste, a small garnish and a knowing smile from our wait staff.</p>
+					<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/sandwich-3.jpg" alt="Our camenbert and mango open sandwich">
+				</div>
+				<div data-role="popup" id="clubSandwich" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
+					<h2>Club sandwich de la maison</h2>
+					<p>This is our take on the classic Club sandwich, where you have no choice of fillings, you will get toasted and untoasted bread, they will all be cut into quarters and no two quarters will be the same. You might even find some of the combinations most edible. We do have a feedback form, and can provide vomit bags on request. Fillings may include avocado, tomato, bacon, egg, marmalade, vegemite, coriander, chicken, ham, shrimp and anything else we find down the back of the fridge. Oh, please don't eat the wooden stick, or next time you'll get a plastic one.</p>
+					<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/sandwich-4.jpg" alt="Our club sandwich">
+				</div>
 
 
-	<!-- end beverages pop up -->
-	
-    <p>We have a range of snacks, both savoury and sweet and please feel free to choose an accompanying beverage from our range.</p>
-   
-    		
-			    <ul data-role="listview">
-								   
-			    	<h2>Burgers</h2>
-			    	<li>
-			    		<a href="#vealBurger" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
+				<!-- end of sandwich pop up divs -->
+				<!-- start of snack pop up divs -->
+				<div data-role="popup" id="cupCakes" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
+					<h2>Cup Cakes</h2>
+					<p>Yes, we do have a range of seasonal cup cakes. What? You doubt us. Well, you'll just have to come back at Christmas, Easter, Halloween, The Summer Solstice, Dawn of the Dead and you'll see the changes. We don't have a gluten free range sorry. They all have sugar, wheat, colourings (the most vivid available under the counter, yeah, we will use cochineal whenever possible). They may also have nuts, fruit, butter, salt, more fruit, sometimes a candle or a sparkler or even on some occasions, a small bride and groom. Well they're both to scale. </p>
+					<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/snack-1.jpg" alt="Cup cakes">
+				</div>
+				<div data-role="popup" id="chocoDonut" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
+					<h2>Chocolate Donut with Sprinkles</h2>
+					<p>This is a standard ring donut, dripping in chocolate frosting as the Americans would say. We call it icing but you can call it what you like. It tastes awesome and does a beautiful job of holding the sprinkles on and leaving those tell tale marks at the corner of your mouth so your spouse/mother/daugher/father/son knows you've been indulging. Hell YEAH with cream on!</p>
+					<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/snack-2.jpg" alt="Chocolate donut with sprinkles">
+				</div>
+				<div data-role="popup" id="macaron" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
+					<h2>Macarons</h2>
+					<p>We have a delicious range of flavours in our chiller. These are lovingly handmade by someone using the finest almond meal, some creme type filling, a range of flavours and colours (go cochineal!) and a lot of patience. These simply melt in the mouth. These contain more than traces of nuts!</p>
+					<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/snack-3.jpg" alt="Macarons. A cornucopia of Macarons.">
+				</div>
+				<div data-role="popup" id="hotJamDonut" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
+					<h2>Hot Jam Donut</h2>
+					<p>What is there to say. Maybe you've 'pigged out' on our veal burger and want to polish of with a donut filled with jam that is around the temperature of a solar flare. You've been burned before but you know you want to risk it all again. Will contain jam and donut. Caution, contents may be hot.</p>
+					<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/snack-4.jpg" alt="Hot Jam Donut. Yum.">
+				</div>
+
+
+				<!-- end of snack pop up divs -->
+
+				<!-- start beverages pop up -->
+				<div data-role="popup" id="coffee" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
+					<h2>Coffee</h2>
+					<p>Alright, we have long, short, fat, skinny, tall, floats etc. We can whip you upa cappuccino or a latte, afogato? not a problem. Need that to go? Want cream, sugar, honey. Sing out sweetheart.</p>
+					<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/coffee.jpg" alt="An image of coffee">
+				</div>
+				<div data-role="popup" id="tea" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
+					<h2>Tea</h2>
+					<p>We have a massive selection of teas. They will be served with milk or lemon. The range includes everything by Twinings (Earl grey, Russian Caravan, English Breakfast, Darjeeling, Assam ), a range of fruit, herbal and ginger teas. we have green tea, white tea, black tea, iced tea, golf tee.</p>
+					<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/tea.jpg" alt="Fancy a cuppa?">
+				</div>
+				<div data-role="popup" id="shake" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
+					<h2>Shakes</h2>
+					<p>Strawberry, mango, strawberry, blackberry, strawberry, watermelon, strawberry, orange, strawberry, banana, strawberry, chocolate, strawberry, kiwi and strawberry. Oh, did we mention, we also have strawberry. You can have a thick shake, a thin shake, a mix of flavours, </p>
+					<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/shake.jpg" alt="A strawberry milk shake">
+				</div>
+
+
+				<!-- end beverages pop up -->
+
+				<p>We have a range of snacks, both savoury and sweet and please feel free to choose an accompanying beverage from our range.</p>
+
+
+				<ul data-role="listview">
+
+					<h2>Burgers</h2>
+					<li>
+						<a href="#vealBurger" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
 							<img src="images/burger-1.jpg" />
 							<h3>Veal Burger</h3>
 							<p>This is our delicious breadcrumbed veal burger</p>
 						</a>
 					</li>
 					<li>
-			    		<a href="#baconBurger" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
+						<a href="#baconBurger" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
 							<img src="images/burger-2.jpg" />
 							<h3>Bacon Burger</h3>
 							<p>This is our twist on the traditional British bacon burger</p>
 						</a>
 					</li>
 					<li>
-			    		<a href="#chickenBurger" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
+						<a href="#chickenBurger" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
 							<img src="images/burger-3.jpg" />
 							<h3>Chicken Burger</h3>
 							<p>This is our Battered Chicken Burger, yum.</p>
 						</a>
 					</li>
 					<li>
-			    		<a href="#chips" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
+						<a href="#chips" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
 							<img src="images/chips.jpg" />
 							<h3>Chips</h3>
 							<p>This are our chips. Yep, they come with a free fork!</p>
 						</a>
 					</li>
-					
-			    </ul>
-    		
-    <ul data-role="listview">
-    <h2>Sandwiches</h2>
-    <li>
-    	<a href="#eggCherrySandwich" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
-    		<img src="images/sandwich-1.jpg" />
-    		<h3>Egg and Cherry Tomato sandwich</h3>
-    		<p>This is an open egg cheese and cherry tomato sandwich</p>
-    	</a>
-    </li>
-    <li>
-    	<a href="#eggCressSandwich" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
-    		<img src="images/sandwich-2.jpg" />
-    		<h3>Egg Cress Sandwich</h3>
-    		<p>This is an egg and cress sandwich served between two slices of crusty bread. </p>
-    	</a>
-    </li>
-    <li>
-    	<a href="#camenbertMangoSandwich" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
-    		<img src="images/sandwich-3.jpg" />
-    		<h3>Camenbert and Mango Open sandwich</h3>
-    		<p>This is our classic camenbert and mango open sandwich.</p>
-    	</a>
-    </li>
-    <li>
-    	<a href="#clubSandwich" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
-    		<img src="images/sandwich-4.jpg" />
-    		<h3>Club Sandwich</h3>
-    		<p>This is our take on the classic Club sandwich</p>
-    	</a>
-    </li>
-    
 
-    </ul>
-    <ul data-role="listview">
-    <h2>Snacks</h2>
-    	<li>
-	    	<a href="#cupCakes" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
-	    		<img src="images/snack-1.jpg" />
-	    		<h3>Cup Cakes</h3>
-	    		<p>Choose from our range of seasonal cupcakes.</p>
-	    	</a>
-    	</li>
-    	<li>
-	    	<a href="#chocoDonut" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
-	    		<img src="images/snack-2.jpg" />
-	    		<h3>Chocolate Sprinkle Donut</h3>
-	    		<p>The primary exhibit is a chocolate covered donut with sprinkles for his or her pleasure.</p>
-	    	</a>
-    	</li>
-    	<li>
-	    	<a href="#macaron" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
-	    		<img src="images/snack-3.jpg" />
-	    		<h3>Macarons</h3>
-	    		<p>We have a range of beautiful French style macaron.</p>
-	    	</a>
-    	</li>
-    	<li>
-	    	<a href="#hotJamDonut" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
-	    		<img src="images/snack-4.jpg" />
-	    		<h3>Hot Jam Donut</h3>
-	    		<p>A hot dam jonut as my daughter used to call them. With cream or ice cream.</p>
-	    	</a>
-    	</li>
+				</ul>
 
-    </ul>
-    <ul data-role="listview">
-    <h2>Beverages</h2>
-    	<li>
-	    	<a href="#coffee" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
-	    		<img src="images/coffee.jpg" />
-	    		<h3>Coffee</h3>
-	    		<p>How do you want your coffee. Our barista will make it to your specifications. Grinding for your pleasure.</p>
-	    	</a>
-   		</li>
-   		<li>
-	    	<a href="#tea" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
-	    		<img src="images/tea.jpg" />
-	    		<h3>Tea</h3>
-	    		<p>We have a large variety of teas from all over the world.</p>
-	    	</a>
-   		</li>
-   		<li>
-	    	<a href="#shake" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
-	    		<img src="images/shake.jpg" />
-	    		<h3>Shakes</h3>
-	    		<p>We have a range of flavours for our freshly made milk shakes, as thick or thin as you like.</p>
-	    	</a>
-   		</li>
+				<ul data-role="listview">
+					<h2>Sandwiches</h2>
+					<li>
+						<a href="#eggCherrySandwich" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
+							<img src="images/sandwich-1.jpg" />
+							<h3>Egg and Cherry Tomato sandwich</h3>
+							<p>This is an open egg cheese and cherry tomato sandwich</p>
+						</a>
+					</li>
+					<li>
+						<a href="#eggCressSandwich" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
+							<img src="images/sandwich-2.jpg" />
+							<h3>Egg Cress Sandwich</h3>
+							<p>This is an egg and cress sandwich served between two slices of crusty bread. </p>
+						</a>
+					</li>
+					<li>
+						<a href="#camenbertMangoSandwich" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
+							<img src="images/sandwich-3.jpg" />
+							<h3>Camenbert and Mango Open sandwich</h3>
+							<p>This is our classic camenbert and mango open sandwich.</p>
+						</a>
+					</li>
+					<li>
+						<a href="#clubSandwich" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
+							<img src="images/sandwich-4.jpg" />
+							<h3>Club Sandwich</h3>
+							<p>This is our take on the classic Club sandwich</p>
+						</a>
+					</li>
 
 
-    </ul>
-</div>
- <div data-role="footer" data-position="fixed">
-  	<p id="theFooter">Site Design by John Wilson for Deakin SIT313 Assignment 1</p>
-  </div>
-</div>
+				</ul>
+				<ul data-role="listview">
+					<h2>Snacks</h2>
+					<li>
+						<a href="#cupCakes" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
+							<img src="images/snack-1.jpg" />
+							<h3>Cup Cakes</h3>
+							<p>Choose from our range of seasonal cupcakes.</p>
+						</a>
+					</li>
+					<li>
+						<a href="#chocoDonut" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
+							<img src="images/snack-2.jpg" />
+							<h3>Chocolate Sprinkle Donut</h3>
+							<p>The primary exhibit is a chocolate covered donut with sprinkles for his or her pleasure.</p>
+						</a>
+					</li>
+					<li>
+						<a href="#macaron" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
+							<img src="images/snack-3.jpg" />
+							<h3>Macarons</h3>
+							<p>We have a range of beautiful French style macaron.</p>
+						</a>
+					</li>
+					<li>
+						<a href="#hotJamDonut" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
+							<img src="images/snack-4.jpg" />
+							<h3>Hot Jam Donut</h3>
+							<p>A hot dam jonut as my daughter used to call them. With cream or ice cream.</p>
+						</a>
+					</li>
 
-<!-- end menu page -->
-
-<!-- begin contacts page -->
-
-<div data-role="page" data-theme="b" id="contactUsPage">
-  <div data-role="header" data-position="fixed">
-    <h1>How to get in touch</h1>
-    <div data-role="navbar">
-      <ul>
-        <li><a href="#homepage" data-icon="home">Home</a></li>
-        <li><a href="#menupage" data-icon="bars">Menu</a></li>
-        <li><a href="#contactUsPage" data-icon="star" class="ui-btn-active ui-state-persist">Where, Who, What?</a></li>
-        <li><a href="#reservationsPage" data-icon="calendar">Reservations</a></li>
-        <li><a href="#readFeedback" data-icon="mail">Read Feedback</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div data-role="main" class="ui-content">
-    <p id="theHeading">So, our products have enticed you and you want to know more</p>
-    <div data-role="collapsibleset">
-  		<div data-role="collapsible">
-    		<h1>Call Us</h1>
-    		<p>You can call us on <a href="tel:0400000111" data-role="button" rel="external" id="phone1" data-inline="true">Phone: 0400000111</a>
-    <a href="tel:0355551111" data-role="button" rel="external" id="phone2" data-inline="true">Phone: 03 5555 1111</a></p>
-  		</div>
-  		<div data-role="collapsible">
-    		<h1>Locate us</h1>
-   			 <p>Our address is: <br />First bend in the railway track<br />North Geelong</p>
-   			 <div data-role="content" id="content">
-            	<div id="map_canvas" style="height:100%"></div>
-        	</div>
-
-  		</div>
-  		<div data-role="collapsible">
-    		<h1>Leave Feedback</h1>
-   			 <p>  <form method="post" action="" id="theFeedbackForm">
-
-	      <div id="ratingDiv">
-		      <fieldset data-role="controlgroup" data-type="horizontal">
-
-		      <legend>Please rate your visit:</legend>
-		        <label for="vgood">Very good</label>
-		        <input type="radio" name="rating" id="vgood" value="vgood" onClick="feedbackRating(this.id);">
-		        <label for="good">Good</label>
-		        <input type="radio" name="rating" id="good" value="good" onClick="feedbackRating(this.id);">	
-		        <label for="average">Average</label>
-		        <input type="radio" name="rating" id="average" value="average" onClick="feedbackRating(this.id);">
-		        <label for="poor">Poor</label>
-		        <input type="radio" name="rating" id="poor" value="poor" onClick="feedbackRating(this.id);">
-		        <label for="vpoor">Very Poor</label>
-		        <input type="radio" name="rating" id="vpoor" value="vpoor" onClick="feedbackRating(this.id);">
-		      </fieldset>
-		  </div>
-      <div id="feedbackText" style="display:none">
-	      <label for="userFeedback" id="feedbackLabel">Additional Feedback :</label>
-	      <textarea name="userFeedback" id="userFeedback" placeholder="Enter feedback here"></textarea>
-	      
-	  </div>
-	  <div id="additionalDetails" style="display:none">
-	  		<p>If you like you can give us the optional details below</p>
-	      <!--<label for="userName">Your Name :</label> -->
-	      <input type="text" name="userName" id="userName" placeholder="Your name">
-	      <!--<label for="userEmail">Your Email Address :</label> -->
-	      <input type="text" name="userEmail" id="userEmail" placeholder="Your email address">
-	      <!--<label for="userPhone">Phone number :</label> -->
-	      <input type="text" name="userPhone" id="userPhone" placeholder="Your phone number">
-	      <!--<label for="userPostcode">Postcode :</label> -->
-	      <input type="text" name="userPostcode" id="userPostcode" placeholder="Home postcode">
-
-	      <input type="button" value="Send Feedback" data-icon="check" data-iconpos="right" data-inline="true" onClick="processTheFeedback()">
-      	</div>
-      	<div id="feedbackThanks" style="display:none">
-      	<p>Thanks for the feedback</p>
-      	</div>
-
-    </form>
-</p>
-  		</div>
-	</div>
-    
-    <p>We can cater for individual requirements or parties.</p>
-    <div id="textOutput"></div>
-   
-    
-  </div>
-	 <div data-role="footer" data-position="fixed">
-  	<p id="theFooter">Site Design by John Wilson for Deakin SIT313 Assignment 1</p>
-  </div>
-</div>
-
-<!-- end contacts page -->
-
-<!-- reservations page -->
-<div data-role="page" data-theme="b" id="reservationsPage">
-  <div data-role="header" data-position="fixed">
-    <h1>Welcome To The Reservations Page</h1>
-    <div data-role="navbar">
-      <ul>
-        <li><a href="#homepage" data-icon="home">Home</a></li>
-        <li><a href="#menupage" data-icon="bars">Menu</a></li>
-        <li><a href="#contactUsPage" data-icon="star">Where, Who, What?</a></li>
-        <li><a href="#reservationsPage" data-icon="calendar"  class="ui-btn-active ui-state-persist">Reservations</a></li>
-        <li><a href="#readFeedback" data-icon="mail">Read Feedback</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div data-role="main" class="ui-content">
-    <p>Do you have reservations about eating here?</p>
-    <p>We would love to be able to make a reservation for you but, due to the complex nature of the accident detailed on our homepage, we suffer from a disturbance in the fabric of space/time, and while the reservations would be made for the correct day and month, the year always ends up as 2078.</p>
-    <p>Should you wish to make a booking for the far future please call us. We will require a very large non-refundable deposit and the reservation cannot be transferred to your offspring.</p>
-    <p>Don't despair though, bookings have not been necessary so far as due to (we assume) the afore mentioned disturbance in space/time, we seem to have an infinite seating capacity. Sure, service does seem to get a little slower as more patrons visit but we have yet to run out of room. However we have come close a few times to running out of crockery and cutlery so it might be adviseable to bring your own.</p>
-    
-   </div>
-	 <div data-role="footer" data-position="fixed">
-  	<p id="theFooter">Site Design by John Wilson for Deakin SIT313 Assignment 1</p>
-  </div>
-</div>
-
-<!-- end reservations page -->
+				</ul>
+				<ul data-role="listview">
+					<h2>Beverages</h2>
+					<li>
+						<a href="#coffee" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
+							<img src="images/coffee.jpg" />
+							<h3>Coffee</h3>
+							<p>How do you want your coffee. Our barista will make it to your specifications. Grinding for your pleasure.</p>
+						</a>
+					</li>
+					<li>
+						<a href="#tea" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
+							<img src="images/tea.jpg" />
+							<h3>Tea</h3>
+							<p>We have a large variety of teas from all over the world.</p>
+						</a>
+					</li>
+					<li>
+						<a href="#shake" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
+							<img src="images/shake.jpg" />
+							<h3>Shakes</h3>
+							<p>We have a range of flavours for our freshly made milk shakes, as thick or thin as you like.</p>
+						</a>
+					</li>
 
 
-
-<!-- ordering page -->
-<!-- not currently being used -->
-
-<div data-role="page" id="orderingPage">
-  <div data-role="header">
-    <h1>Welcome To My Orders Page</h1>
-  </div>
-
-  <div data-role="main" class="ui-content">
-    <p>This is the orders page.</p>
-    <p>Customers will be able to place orders here for collection</p>
-  </div>
-  <div data-role="footer">
-  	<p id="theFooter">Site Design by John Wilson for Deakin SIT313 Assignment 1</p>
-  </div>
-</div>
-
-
-
-
-<!-- end ordering page -->
-<!-- start of read feedback page -->
-
-	<div data-role="page" id="readFeedback" data-theme="b">
-		<div data-role="header">
-    		<h1>Have a look at the feedback</h1>
-    		<div data-role="navbar">
-		      <ul>
-		        <li><a href="#homepage" data-icon="home">Home</a></li>
-		        <li><a href="#menupage" data-icon="bars">Menu</a></li>
-		        <li><a href="#contactUsPage" data-icon="star">Where, Who, What?</a></li>
-		        <li><a href="#reservationsPage" data-icon="calendar" >Reservations</a></li>
-		        <li><a href="#readFeedback" data-icon="mail" class="ui-btn-active ui-state-persist">Read Feedback</a></li>
-		      </ul>
-		    </div>
-    		</div>
-  			<div data-role="main" class="ui-content">
-			    <p>Here's the feedback that has been left for Sweet Soul Sister</p>	    
-  			</div>
-  			<div data-role="footer">
-    		</div>
+				</ul>
+			</div>
+			<div data-role="footer" data-position="fixed">
+				<p id="theFooter">Site Design by John Wilson for Deakin SIT313 Assignment 1</p>
+			</div>
 		</div>
 
-<!-- end of read feedback page -->
-</body>
+		<!-- end menu page -->
+
+		<!-- begin contacts page -->
+
+		<div data-role="page" data-theme="b" id="contactUsPage">
+			<div data-role="header" data-position="fixed">
+				<h1>How to get in touch</h1>
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#homepage" data-icon="home">Home</a></li>
+						<li><a href="#menupage" data-icon="bars">Menu</a></li>
+						<li><a href="#contactUsPage" data-icon="star" class="ui-btn-active ui-state-persist">Where, Who, What?</a></li>
+						<li><a href="#reservationsPage" data-icon="calendar">Reservations</a></li>
+						<li><a href="#readFeedback" data-icon="mail">Read Feedback</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div data-role="main" class="ui-content">
+				<p id="theHeading">So, our products have enticed you and you want to know more</p>
+				<div data-role="collapsibleset">
+					<div data-role="collapsible">
+						<h1>Call Us</h1>
+						<p>You can call us on <a href="tel:0400000111" data-role="button" rel="external" id="phone1" data-inline="true">Phone: 0400000111</a>
+							<a href="tel:0355551111" data-role="button" rel="external" id="phone2" data-inline="true">Phone: 03 5555 1111</a></p>
+						</div>
+						<div data-role="collapsible">
+							<h1>Locate us</h1>
+							<p>Our address is: <br />First bend in the railway track<br />North Geelong</p>
+							<div data-role="content" id="content">
+								<div id="map_canvas" style="height:100%"></div>
+							</div>
+
+						</div>
+						<div data-role="collapsible">
+							<h1>Credits</h1>
+							<p>The following people/organisations need to be credited</p>
+							<p><a href="http://pixabay.com">Pixabay</a> for all the images</p>
+							<p><a href="http://www.w3schools.com/jquerymobile/">W3Schools</a> for the fantastic tutorials</p>
+							<p><a href="http://github.com">GitHub</a> for the static hosting (HTML, CSS and JS)</p>
+
+						</div>
+						<div data-role="collapsible">
+							<h1>Leave Feedback</h1>
+							<form method="post" action="" id="theFeedbackForm">
+								<div id="ratingDiv">
+									<fieldset data-role="controlgroup" data-type="horizontal">
+										<legend>Please rate your visit:</legend>
+										<label for="vgood">Very good</label>
+										<input type="radio" name="rating" id="vgood" value="vgood" onClick="feedbackRating(this.id);">
+										<label for="good">Good</label>
+										<input type="radio" name="rating" id="good" value="good" onClick="feedbackRating(this.id);">	
+										<label for="average">Average</label>
+										<input type="radio" name="rating" id="average" value="average" onClick="feedbackRating(this.id);">
+										<label for="poor">Poor</label>
+										<input type="radio" name="rating" id="poor" value="poor" onClick="feedbackRating(this.id);">
+										<label for="vpoor">Very Poor</label>
+										<input type="radio" name="rating" id="vpoor" value="vpoor" onClick="feedbackRating(this.id);">
+									</fieldset>
+								</div>
+								<div id="feedbackText" style="display:none">
+									<label for="userFeedback" id="feedbackLabel">Additional Feedback :</label>
+									<textarea name="userFeedback" id="userFeedback" placeholder="Enter feedback here"></textarea>
+
+								</div>
+								<div id="additionalDetails" style="display:none">
+									<p>If you like you can give us the optional details below</p>
+									<!--<label for="userName">Your Name :</label> -->
+									<input type="text" name="userName" id="userName" placeholder="Your name">
+									<!--<label for="userEmail">Your Email Address :</label> -->
+									<input type="text" name="userEmail" id="userEmail" placeholder="Your email address">
+									<!--<label for="userPhone">Phone number :</label> -->
+									<input type="text" name="userPhone" id="userPhone" placeholder="Your phone number">
+									<!--<label for="userPostcode">Postcode :</label> -->
+									<input type="text" name="userPostcode" id="userPostcode" placeholder="Home postcode">
+
+									<input type="button" value="Send Feedback" data-icon="check" data-iconpos="right" data-inline="true" onClick="processTheFeedback()">
+								</div>
+							</form>
+						</div>
+					</div>
+					<div id="feedbackThanks" style="display:none">
+						<!-- feedback message goes here -->
+					</div>
+					<p>Please remember we can cater for individual requirements or parties of any size. ( <span id='infinity'>&infin;</span> - 1 === <span id='infinity'>&infin;</span> + 1 === <span id='infinity'>&infin;</span> )</p>
+					<div id="textOutput"></div>
+			</div> <!-- end of main div -->
+			<div data-role="footer" data-position="fixed">
+				<p id="theFooter">Site Design by John Wilson for Deakin SIT313 Assignment 1</p>
+			</div>
+		</div>
 
 
+		<!-- end contacts page -->
 
+		<!-- reservations page -->
+		<div data-role="page" data-theme="b" id="reservationsPage">
+			<div data-role="header" data-position="fixed">
+				<h1>Welcome To The Reservations Page</h1>
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#homepage" data-icon="home">Home</a></li>
+						<li><a href="#menupage" data-icon="bars">Menu</a></li>
+						<li><a href="#contactUsPage" data-icon="star">Where, Who, What?</a></li>
+						<li><a href="#reservationsPage" data-icon="calendar"  class="ui-btn-active ui-state-persist">Reservations</a></li>
+						<li><a href="#readFeedback" data-icon="mail">Read Feedback</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div data-role="main" class="ui-content">
+				<p>Do you have reservations about eating here?</p>
+				<p>We would love to be able to make a reservation for you but, due to the complex nature of the accident detailed on our homepage, we suffer from a disturbance in the fabric of space/time, and while the reservations would be made for the correct day and month, the year always ends up as 2078.</p>
+				<p>Should you wish to make a booking for the far future please call us. We will require a very large non-refundable deposit and the reservation cannot be transferred to your offspring.</p>
+				<p>Don't despair though, bookings have not been necessary so far as due to (we assume) the afore mentioned disturbance in space/time, we seem to have an infinite seating capacity. Sure, service does seem to get a little slower as more patrons visit but we have yet to run out of room. However we have come close a few times to running out of crockery and cutlery so it might be adviseable to bring your own.</p>
+
+			</div>
+			<div data-role="footer" data-position="fixed">
+				<p id="theFooter">Site Design by John Wilson for Deakin SIT313 Assignment 1</p>
+			</div>
+		</div>
+
+		<!-- end reservations page -->
+
+
+		<!-- start of read feedback page -->
+
+		<div data-role="page" id="readFeedback" data-theme="b">
+			<div data-role="header">
+				<h1>Have a look at the feedback</h1>
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#homepage" data-icon="home">Home</a></li>
+						<li><a href="#menupage" data-icon="bars">Menu</a></li>
+						<li><a href="#contactUsPage" data-icon="star">Where, Who, What?</a></li>
+						<li><a href="#reservationsPage" data-icon="calendar" >Reservations</a></li>
+						<li><a href="#readFeedback" data-icon="mail" class="ui-btn-active ui-state-persist">Read Feedback</a></li>
+					</ul>
+				</div>
+			</div>
+			<div data-role="main" class="ui-content">
+				<p>Here's the feedback that has been left for Sweet Soul Sister</p>	    
+			</div>
+			<div data-role="footer">
+			</div>
+		</div>
+
+		<!-- end of read feedback page -->
+	</body>
 </html>

@@ -9,8 +9,8 @@ var outputString = ''; // this is to hold additional output we may push to the p
 var isThisAMobileDevice = false;
 
 function isMobile() { // this function is based on the one from here http://magentohostsolution.com/3-ways-detect-mobile-device-jquery/
-  try{ 
-  	document.createEvent("TouchEvent");
+	try{ 
+  	document.createEvent("TouchEvent"); // attempt to create a touch event
   	isThisAMobileDevice = true;
   	$('#phone1').attr("href", "tel:0400000111"); // set the phone number 1 link
   	$('#phone2').attr("href", "tel:0355551111"); // set the phone number 2 link
@@ -18,7 +18,7 @@ function isMobile() { // this function is based on the one from here http://mage
   }
   catch(e){ 
   	
-  	isThisAMobileDevice = false;
+  	isThisAMobileDevice = false; // then there was no touch interface so probably no phone service
   	$('#phone1').attr("href", ""); // clear the phone number 1 link
   	$('#phone2').attr("href", ""); // clear the phone number 2 link
 
@@ -27,14 +27,14 @@ function isMobile() { // this function is based on the one from here http://mage
 }
 
 function js_yyyy_mm_dd_hh_mm_ss () { // this function is based of the one here http://tylerfrankenstein.com/user/4/code/javascript-date-time-yyyy-mm-dd-hh-mm-ss
-  now = new Date();
-  year = "" + now.getFullYear();
-  month = "" + (now.getMonth() + 1); if (month.length == 1) { month = "0" + month; }
-  day = "" + now.getDate(); if (day.length == 1) { day = "0" + day; }
-  hour = "" + now.getHours(); if (hour.length == 1) { hour = "0" + hour; }
-  minute = "" + now.getMinutes(); if (minute.length == 1) { minute = "0" + minute; }
-  second = "" + now.getSeconds(); if (second.length == 1) { second = "0" + second; }
-  return year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
+	now = new Date();
+	year = "" + now.getFullYear();
+	month = "" + (now.getMonth() + 1); if (month.length == 1) { month = "0" + month; }
+	day = "" + now.getDate(); if (day.length == 1) { day = "0" + day; }
+	hour = "" + now.getHours(); if (hour.length == 1) { hour = "0" + hour; }
+	minute = "" + now.getMinutes(); if (minute.length == 1) { minute = "0" + minute; }
+	second = "" + now.getSeconds(); if (second.length == 1) { second = "0" + second; }
+	return year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
 }
 
 function feedbackRating(theRating){
@@ -43,27 +43,27 @@ function feedbackRating(theRating){
 	$('#feedbackText').fadeIn();
 	switch(theRating){
 		case "poor":
-			ratingClicked = "poor";
-			askQuestion("poor");
-			break;
+		ratingClicked = "poor";
+		askQuestion("poor");
+		break;
 		case "vpoor":
-			ratingClicked = "vpoor";
-			askQuestion("vpoor");
-			break;
+		ratingClicked = "vpoor";
+		askQuestion("vpoor");
+		break;
 		case "average":
-			ratingClicked = "average";
-			askQuestion("average");			
-			break;
+		ratingClicked = "average";
+		askQuestion("average");			
+		break;
 		case "good":
-			ratingClicked = "good";
-			askQuestion("good");
-			break;
+		ratingClicked = "good";
+		askQuestion("good");
+		break;
 		case "vgood":
-			ratingClicked = "vgood";
-			askQuestion("vgood");
-			break;
+		ratingClicked = "vgood";
+		askQuestion("vgood");
+		break;
 		default:
-			ratingClicked = '';
+		ratingClicked = '';
 	}
 }
 function askQuestion(theRating){
@@ -106,8 +106,6 @@ function processTheFeedback(){
 
 	*/
 	var userName = $('#userName').val();
-	//alert(userName);
-	//$('#textOutput').html(userName);
 
 	var userEmail = $('#userEmail').val();
 	//$('#textOutput').append("<br />" + userEmail);
@@ -135,38 +133,16 @@ function processTheFeedback(){
 	var theString = JSON.stringify(resultsArray); // convert the array to a JSON string
 	//console.log(theString);
 	// we'll use ajax to send the data to the backend
-/*
-	$.ajax({
-	    type: "POST", // type of ajax request
-	    url: "theFormInput.php", // php processor for the ajax
-	    data: theString, // the data we are passing via ajax
-	    contentType: "application/json; charset=utf-8", // set the content type to avoid any error
-	    dataType: "json", // set the data type for the ajax request
-	    success: function(data){console.log(data);},
-	   // success: function(data){
-	    //	alert("Well done" + data);
-	    //	console.log(data);
-	    //}, 
-	    //success: function(data){$('#textOutput').html(data);}, // do this on success
-	   // failure: function(errMsg) {
-	   	failure: function(data){$('#textOutput').html(data);}
-	        //console.log(errMsg); // and this on failure
-	   	//}
-	    //}
-	});*/
-
 
 // Assign handlers immediately after making the request,
 // and remember the jqxhr object for this request
 //var jqxhr = $.post( "theFormInput.php", $('#theFeedbackForm').serialize(), function(data) { // for local hosting only
-var jqxhr = $.post( "https://emeraldnetworksolutions.com.au/sit313/theFormInput.php", $('#theFeedbackForm').serialize(), function(data) {
-//var jqxhr = $.post( "http://emeraldnetworksolutions.com.au/sit313/test.php?callback=", $('#theFeedbackForm').serialize(), function(data) {
+	var jqxhr = $.post( "https://emeraldnetworksolutions.com.au/sit313/theFormInput.php", $('#theFeedbackForm').serialize(), function(data) {
 
-  //alert(  data  );
   // this indicates that ajax was able to talk to the PHP and return some data
   // we need to check the data to see if it contains an error condition
   if ( data == 'Hot to trot'){ // then we have success
-  	feedbackSuccess();
+  	feedbackSuccess(userName);
 
   } else {
   	// there is some sort of error
@@ -174,36 +150,27 @@ var jqxhr = $.post( "https://emeraldnetworksolutions.com.au/sit313/theFormInput.
   }
 
 })
-  .done(function() {
+	.done(function() {
   //  alert( "second success" );
-  })
-  .fail(function(errMsg) {
-    alert( "error -" + JSON.stringify(errMsg));
-  })
-  .always(function() {
+})
+	.fail(function(errMsg) {
+		alert( "error -" + JSON.stringify(errMsg));
+	})
+	.always(function() {
     //alert( "finished" );
 });
- 
-// Perform other work here ...
- 
-// Set another completion function for the request above
-jqxhr.always(function() {
- // alert( "second finished" );
-});
-
 
 }
 
-function feedbackSuccess(){ // do stuff here when the feedback was successfully submitted
+function feedbackSuccess(theUserName){ // do stuff here when the feedback was successfully submitted
+	var feedBackMessage = '<p>Thanks for the feedback ' + theUserName + '!</p>';
+	feedBackMessage += "<p>Your feedback helps us to know what we are doing right as well as what's not.</p>";
 	$('#ratingDiv').hide();
 	$('#phone1').hide();
 	$('#phone2').hide();
 	$('#theFeedbackForm').hide();
+	$('#feedbackThanks').html(feedBackMessage);
 	$('#feedbackThanks').fadeIn();
-	//$('#feedbackPanel').show();
-
-
-
 }
 function feedbackFailure(theErrorList){
 	$('#userEmail').css("background-color","white");
@@ -211,22 +178,18 @@ function feedbackFailure(theErrorList){
 	$('#userPostcode').css("background-color", "white");
 	// we're here because there was an error in the input data
 // errorList is like this "['john.aol.com is not a valid email address'],['userEmail']"
-	var theErrorArray = theErrorList.split(',');
-	console.log(theErrorArray.length);
+var theErrorArray = theErrorList.split(',');
+console.log(theErrorArray.length);
 	// the error array should always contain either nothing or an error message(s) and error location(s)
 	if (theErrorArray.length > 0){ // then there are some errors
 		$('#textOutput').html(''); // clear the text output
 		for (var y=0;y<theErrorArray.length-2;y=y+2){ //step by 2's in the loop
 			console.log("Error: " + theErrorArray[y]);
-			console.log("Location: " + theErrorArray[y+1])
-			$('#' + theErrorArray[y+1]).css("background-color","red");
-			$('#textOutput').append(theErrorArray[y] + "<br />");
-		}
-
+		console.log("Location: " + theErrorArray[y+1])
+		$('#' + theErrorArray[y+1]).css("background-color","red");
+		$('#textOutput').append(theErrorArray[y] + "<br />");
 	}
-	//console.log(theErrorList.length);
-	//console.log(JSON.parse(theErrorList));
-
+}
 }
 
 function showAccidentDetails(){
@@ -234,5 +197,5 @@ function showAccidentDetails(){
 
 	// but for now let's just pop up an alert
 
-	alert("Wow, you're keen. But if we tell you how to do it you might get hurt. Safety first children.");
+	alert("Wow, you're keen. But if we tell you how it actually happened you might repeat it and get hurt. Safety first children.");
 }

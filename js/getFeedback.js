@@ -5,10 +5,9 @@ John Wilson - 213160526 SIT313 Assignment 1 - August 2015
 
 */
 
-
 //run the following code whenever the readFeedback pseudo-page is created
-
-	$(document).delegate('[id="readFeedback"]', 'pagecreate', function () {
+// it'll query my server and get the feedback in DESC date order
+$(document).delegate('[id="readFeedback"]', 'pagecreate', function () {
 	console.log("Called the function");
     //cache this page for later use (inside the AJAX function)
     var $this = $(this);
@@ -17,8 +16,7 @@ John Wilson - 213160526 SIT313 Assignment 1 - August 2015
     $.getJSON('http://emeraldnetworksolutions.com.au/sit313/getFeedback.php', function (response) {
 
         //create a variable to hold the parsed output from the server
-        var output = [];
-        var divOutput = [];
+
         var theOutputString = '';
 
         //if the PHP script returned a success
@@ -63,16 +61,16 @@ John Wilson - 213160526 SIT313 Assignment 1 - August 2015
                  
                  //divOutput.push(theOutputString);
 
-            }
+             }
 
         //if the PHP script returned an error
         } else { //output an error message
-            theOutputString.push('<li>No Data Found</li>');
+        	theOutputString = '<li>No Data Found</li>';
         }
 
-        //append the output to the `data-role="content"` div on this page as a listview and trigger the `create` event on its parent to style the listview
+        //append the output to the `data-role="main"` div on this page and trigger the `create` event on its parent to style the content
 
         $this.children('[data-role="main"]').append(theOutputString).trigger('create');
 
-    	});
-	});
+    });
+});

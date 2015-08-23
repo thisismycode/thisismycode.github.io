@@ -88,3 +88,10 @@ mostly with regard to the thumnails and popups*/
 	margin-right: 20px;
 	margin-top: 10px;
 }
+#infinity{
+	/* control the font size for the infinity symbols */
+	position: relative;
+	top: 4px;
+	font-size:180%;
+	
+}
