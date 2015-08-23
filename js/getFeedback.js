@@ -52,14 +52,10 @@ $(document).delegate('[id="readFeedback"]', 'pagecreate', function () {
                  if (theRating == 'average') theRating = "&#9734; &#9734; &#9733; &#9733;"; // two stars
                  if (theRating == 'good') theRating = "&#9734; &#9733; &#9733; &#9733;"; // three stars
                  if (theRating == 'vgood') theRating = "&#9733; &#9733; &#9733; &#9733;"; // four stars, well done 
-                 //output.push('<li>' + theRating + " - " + theFeedback + " - " + theName + '</li>');
                  theOutputString += '<div data-role="collapsible"><h2><span id="ratingSpan">' + theRating + '</span> : ' + theFeedback + '</h2>';
-
-                 theOutputString +="<p>Left by : " + theName + '</p>';
-                 theOutputString += '<p>Left on : ' + theDate + ' - from IP address : ' + theIP + '</p>';
-                 theOutputString += '</div><hr />'; 
-                 
-                 //divOutput.push(theOutputString);
+                 theOutputString +="<li>Left by : <strong>" + theName + '</strong></li><li>Email address: <strong>' + theEmail + '</strong></li>';
+                 theOutputString += '<li>Left on : <strong>' + theDate + '</strong></li><li>From IP address : <strong>' + theIP + '</strong></li>';
+                 theOutputString += '</div>'; 
 
              }
 
