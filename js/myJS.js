@@ -7,6 +7,7 @@ var ratingClicked = ''; // holds which feedback rating has been clicked
 var outputString = ''; // this is to hold additional output we may push to the page depending on user input
 
 var isThisAMobileDevice = false;
+$('#textOutput').hide();
 
 function isMobile() { // this function is based on the one from here http://magentohostsolution.com/3-ways-detect-mobile-device-jquery/
 	try{ 
@@ -87,6 +88,10 @@ function askQuestion(theRating){
 	$('#ratingDiv').hide();
 	$('#feedbackLabel').html(theQuestion);
 	$('#additionalDetails').fadeIn();
+	// hide the other list items to maximise screen real estate
+	$('#callUsArea').hide();
+	$('#locateUsArea').hide();
+	$('#creditsArea').hide();
 
 }
 
@@ -99,11 +104,6 @@ function processTheFeedback(){
 	email ----  holds the email address
 	userFeedback ---- holds any feedback they may have entered
 	rating = vpoor,poor,average,good,vgood
-
-
-
-
-
 	*/
 	var userName = $('#userName').val();
 
@@ -113,9 +113,6 @@ function processTheFeedback(){
 	var userFeedback = $('#userFeedback').val();
 	var userPostcode = $('#userPostcode').val();
 	var userPhone = $('#userPhone').val();
-	//$('#textOutput').append("<br />" + userFeedback);
-
-	//$('#textOutput').append("<br />Rating: " + ratingClicked);
 
 	// we want to build an array of the sanitised input which we can the JSON.stringify to send to the backend
 	var theDate = js_yyyy_mm_dd_hh_mm_ss(); // returns the date formatted as MSB -> LSB which makes sorting easier
@@ -131,34 +128,35 @@ function processTheFeedback(){
 	resultsArray.push(theDate); // push the submitted date/time into the array
 
 	var theString = JSON.stringify(resultsArray); // convert the array to a JSON string
-	//console.log(theString);
 	// we'll use ajax to send the data to the backend
 
-// Assign handlers immediately after making the request,
-// and remember the jqxhr object for this request
-//var jqxhr = $.post( "theFormInput.php", $('#theFeedbackForm').serialize(), function(data) { // for local hosting only
+	// Assign handlers immediately after making the request,
+	// and remember the jqxhr object for this request
+
 	var jqxhr = $.post( "https://emeraldnetworksolutions.com.au/sit313/theFormInput.php", $('#theFeedbackForm').serialize(), function(data) {
 
-  // this indicates that ajax was able to talk to the PHP and return some data
-  // we need to check the data to see if it contains an error condition
-  if ( data == 'Hot to trot'){ // then we have success
-  	feedbackSuccess(userName);
+	  // this indicates that ajax was able to talk to the PHP and return some data
+	  // we need to check the data to see if it contains an error condition
+	  data = data.trim(); // remove any whitespace as it was an issue
+	  if ( data == 'Hot to trot'){ // then we have success
 
-  } else {
-  	// there is some sort of error
-  	feedbackFailure(data);
-  }
+	  	feedbackSuccess(userName);
 
-})
+	  } else {
+	  	// there is some sort of error
+	  	feedbackFailure(data);
+	  }
+
+	})
 	.done(function() {
-  //  alert( "second success" );
-})
+  	// This code will fire on completion also, but we've already handled that above
+	})
 	.fail(function(errMsg) {
 		alert( "error -" + JSON.stringify(errMsg));
 	})
 	.always(function() {
-    //alert( "finished" );
-});
+    	// this will always fire after success or failure, but we don't need to utilise that here
+	});
 
 }
 
@@ -166,30 +164,46 @@ function feedbackSuccess(theUserName){ // do stuff here when the feedback was su
 	var feedBackMessage = '<p>Thanks for the feedback ' + theUserName + '!</p>';
 	feedBackMessage += "<p>Your feedback helps us to know what we are doing right as well as what's not.</p>";
 	$('#ratingDiv').hide();
-	$('#phone1').hide();
-	$('#phone2').hide();
 	$('#theFeedbackForm').hide();
 	$('#feedbackThanks').html(feedBackMessage);
 	$('#feedbackThanks').fadeIn();
+	$('#textOutput').hide();
+	// empty the form fields
+	$('#userName').val('');
+	$('#userEmail').val('');
+	$('#userFeedback').val('');
+	$('#userPhone').val('');
+	$('#userPostcode').val('');
+	$('#theFeedbackArea').hide(); //feed back has been left, it cannot be left again with out a page refresh
+	// restore the other list elements to view
+	$('#callUsArea').fadeIn();
+	$('#locateUsArea').fadeIn();
+	$('#creditsArea').fadeIn();
+
+
 }
 function feedbackFailure(theErrorList){
-	$('#userEmail').css("background-color","white");
-	$('#userPhone').css("background-color","white"); // clear any red boxes from previous attempts
-	$('#userPostcode').css("background-color", "white");
+	$('#userEmail').css("background-color","#333333");
+	$('#userPhone').css("background-color","#333333"); // clear any red boxes from previous attempts
+	$('#userPostcode').css("background-color", "#333333");
 	// we're here because there was an error in the input data
-// errorList is like this "['john.aol.com is not a valid email address'],['userEmail']"
-var theErrorArray = theErrorList.split(',');
-console.log(theErrorArray.length);
+	// errorList is like this "['john.aol.com is not a valid email address'],['userEmail']"
+	var theErrorArray = theErrorList.split(',');
+	//console.log(theErrorArray.length);
 	// the error array should always contain either nothing or an error message(s) and error location(s)
+	$('#textOutput').hide();
+	$('#textOutput').css("background-color", "red");
+
 	if (theErrorArray.length > 0){ // then there are some errors
 		$('#textOutput').html(''); // clear the text output
 		for (var y=0;y<theErrorArray.length-2;y=y+2){ //step by 2's in the loop
 			console.log("Error: " + theErrorArray[y]);
-		console.log("Location: " + theErrorArray[y+1])
-		$('#' + theErrorArray[y+1]).css("background-color","red");
-		$('#textOutput').append(theErrorArray[y] + "<br />");
+			console.log("Location: " + theErrorArray[y+1])
+			$('#' + theErrorArray[y+1]).css("background-color","red"); // change the background colour to red for the error
+			$('#textOutput').append(theErrorArray[y] + "<br />"); // display a useful error message
+		}
 	}
-}
+	$('#textOutput').fadeIn(); // so the error message(s)
 }
 
 function showAccidentDetails(){

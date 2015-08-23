@@ -1,4 +1,6 @@
-/* this is to override some of the jquery mobile settings
+/* 
+John Wilson 213160526 SIT313 Assignment 1 August 2015
+this is to override some of the jquery mobile settings
 mostly with regard to the thumnails and popups*/
 
 
@@ -100,5 +102,10 @@ mostly with regard to the thumnails and popups*/
 	color: red;
 	font-size: 170%;
 
+
+}
+#textOutput{ /* used for displaying error messages */
+	font-size: 150%;
+	border: 1px solid #999999;
 
 }

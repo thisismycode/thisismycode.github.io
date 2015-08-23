@@ -3,7 +3,7 @@
 This is to process the user feedback form
 It will sanitise the user input date before commiting it to the database
 
-By John Wilson Aug 2015
+By John Wilson 213160526 SIT313 Assignment 1 Aug 2015
 */
 
 if (isset($_SERVER['HTTP_ORIGIN'])) { // Allow access from any origin
@@ -88,8 +88,6 @@ if (strlen($postcode) < 4 && strlen($postcode) > 1){ // then the postcode is too
 	array_push($theErrorList,$theError, $errorLocation);
 }
 if ($theError == ''){ // there is no error so we can proceed
-	//echo $temp . "<br />";
-	//echo $feedback;
 	// we'll need to commit the data to the database
 	$sql = "INSERT INTO userFeedback (name, feedback, email, rating, phone, postcode, ipAddress) VALUES ('" . $name . "', '" . $feedback . "','" . $email . "','" . $rating . "','" . $phone . "','" . $postcode . "', '" . $ip . "')";
 	if ($conn->query($sql) === TRUE) {
@@ -98,7 +96,6 @@ if ($theError == ''){ // there is no error so we can proceed
     	echo "<br />Error: " . $sql . "<br />" . $conn->error;
 	}
 	$conn->close(); // close the database connection
-	//return true;
 
 } else {
 	// there was an error so we need to send some info back regarding the error
@@ -106,7 +103,6 @@ if ($theError == ''){ // there is no error so we can proceed
 		echo $theErrorList[$x];
 		echo ","; // a separator to aid processing in the javascript
 	}
-	//return false;
 }
 
 ?>

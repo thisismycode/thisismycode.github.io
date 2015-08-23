@@ -25,7 +25,7 @@
 		           	center: altLatLong,
 		           	mapTypeId: google.maps.MapTypeId.ROADMAP
 		           }); 
-		           var marker = new google.maps.Marker({
+		           var marker = new google.maps.Marker({ // place a marker at our fictional location
 		           	position: myLatLong,
 		           	map: map,
 		           	title: 'Sweet Soul Sister'
@@ -348,72 +348,78 @@
 
 			<div data-role="main" class="ui-content">
 				<p id="theHeading">So, our products have enticed you and you want to know more</p>
+				<div id="textOutput"><!-- error messages will be displayed here --></div>
 				<div data-role="collapsibleset">
-					<div data-role="collapsible">
+					<div data-role="collapsible" id='callUsArea'>
 						<h1>Call Us</h1>
 						<p>You can call us on <a href="tel:0400000111" data-role="button" rel="external" id="phone1" data-inline="true">Phone: 0400000111</a>
-							<a href="tel:0355551111" data-role="button" rel="external" id="phone2" data-inline="true">Phone: 03 5555 1111</a></p>
+						<a href="tel:0355551111" data-role="button" rel="external" id="phone2" data-inline="true">Phone: 03 5555 1111</a></p>
+					</div>
+					<div data-role="collapsible" id='locateUsArea'>
+						<h1>Locate us</h1>
+						<p>Our address is: <br />First bend in the railway track<br />North Geelong</p>
+						<div data-role="content" id="content">
+							<div id="map_canvas" style="height:100%"></div>
 						</div>
-						<div data-role="collapsible">
-							<h1>Locate us</h1>
-							<p>Our address is: <br />First bend in the railway track<br />North Geelong</p>
-							<div data-role="content" id="content">
-								<div id="map_canvas" style="height:100%"></div>
+					</div>
+					<div data-role="collapsible" id='creditsArea'>
+						<h1>Credits</h1>
+						<p>The following people/organisations need to be credited</p>
+						<p><a href="http://pixabay.com">Pixabay</a> for all the images</p>
+						<p><a href="http://www.w3schools.com/jquerymobile/">W3Schools</a> for the fantastic tutorials</p>
+						<p><a href="http://github.com">GitHub</a> for the static hosting (HTML, CSS and JS)</p>
+						<p><a href="http://h2g2.com/edited_entry/A943184">Douglas Adams</a> for inspiring the text on this site. RIP Douglas.</p>
+						<p>This site was designed by me, John Wilson. I do work for money, favours, food and sometimes just for fun</p>
+						<p>If you want me to do some work for you, money is your best friend. I'm not going to be the cheapest but I am one of the best!</p>
+						<p>If you really need to get hold of me try your luck here. wijoh@deakin.edu.au</p>
+						<p>Please note any resemblance to a person, living or dead, creature, vegetable, phone number e.t.c. is 100% on purpose and the names have been changed to protect the guilty. There is no restauraunt at the address or phone number. You will be wasting your time, but then 'time is an illusion and lunchtime doubly so' in the inimitable words of Ford Prefect.</p>
+
+					</div>
+					<div data-role="collapsible" id='theFeedbackArea'>
+						<h1>Leave Feedback</h1>
+						<form method="post" action="" id="theFeedbackForm">
+							<div id="ratingDiv">
+								<fieldset data-role="controlgroup" data-type="horizontal">
+									<legend>Please rate your visit:</legend>
+									<label for="vgood">Very good</label>
+									<input type="radio" name="rating" id="vgood" value="vgood" onClick="feedbackRating(this.id);">
+									<label for="good">Good</label>
+									<input type="radio" name="rating" id="good" value="good" onClick="feedbackRating(this.id);">	
+									<label for="average">Average</label>
+									<input type="radio" name="rating" id="average" value="average" onClick="feedbackRating(this.id);">
+									<label for="poor">Poor</label>
+									<input type="radio" name="rating" id="poor" value="poor" onClick="feedbackRating(this.id);">
+									<label for="vpoor">Very Poor</label>
+									<input type="radio" name="rating" id="vpoor" value="vpoor" onClick="feedbackRating(this.id);">
+								</fieldset>
 							</div>
+							<div id="feedbackText" style="display:none">
+								<label for="userFeedback" id="feedbackLabel">Additional Feedback :</label>
+								<textarea name="userFeedback" id="userFeedback" placeholder="Enter feedback here"></textarea>
 
-						</div>
-						<div data-role="collapsible">
-							<h1>Credits</h1>
-							<p>The following people/organisations need to be credited</p>
-							<p><a href="http://pixabay.com">Pixabay</a> for all the images</p>
-							<p><a href="http://www.w3schools.com/jquerymobile/">W3Schools</a> for the fantastic tutorials</p>
-							<p><a href="http://github.com">GitHub</a> for the static hosting (HTML, CSS and JS)</p>
+							</div>
+							<div id="additionalDetails" style="display:none">
+								<p>If you like you can give us the optional details below</p>
+								<!--<label for="userName">Your Name :</label> -->
+								<input type="text" name="userName" id="userName" placeholder="Your name">
+								<!--<label for="userEmail">Your Email Address :</label> -->
+								<input type="text" name="userEmail" id="userEmail" placeholder="Your email address">
+								<!--<label for="userPhone">Phone number :</label> -->
+								<input type="text" name="userPhone" id="userPhone" placeholder="Your phone number">
+								<!--<label for="userPostcode">Postcode :</label> -->
+								<input type="text" name="userPostcode" id="userPostcode" placeholder="Home postcode">
 
-						</div>
-						<div data-role="collapsible">
-							<h1>Leave Feedback</h1>
-							<form method="post" action="" id="theFeedbackForm">
-								<div id="ratingDiv">
-									<fieldset data-role="controlgroup" data-type="horizontal">
-										<legend>Please rate your visit:</legend>
-										<label for="vgood">Very good</label>
-										<input type="radio" name="rating" id="vgood" value="vgood" onClick="feedbackRating(this.id);">
-										<label for="good">Good</label>
-										<input type="radio" name="rating" id="good" value="good" onClick="feedbackRating(this.id);">	
-										<label for="average">Average</label>
-										<input type="radio" name="rating" id="average" value="average" onClick="feedbackRating(this.id);">
-										<label for="poor">Poor</label>
-										<input type="radio" name="rating" id="poor" value="poor" onClick="feedbackRating(this.id);">
-										<label for="vpoor">Very Poor</label>
-										<input type="radio" name="rating" id="vpoor" value="vpoor" onClick="feedbackRating(this.id);">
-									</fieldset>
-								</div>
-								<div id="feedbackText" style="display:none">
-									<label for="userFeedback" id="feedbackLabel">Additional Feedback :</label>
-									<textarea name="userFeedback" id="userFeedback" placeholder="Enter feedback here"></textarea>
-
-								</div>
-								<div id="additionalDetails" style="display:none">
-									<p>If you like you can give us the optional details below</p>
-									<!--<label for="userName">Your Name :</label> -->
-									<input type="text" name="userName" id="userName" placeholder="Your name">
-									<!--<label for="userEmail">Your Email Address :</label> -->
-									<input type="text" name="userEmail" id="userEmail" placeholder="Your email address">
-									<!--<label for="userPhone">Phone number :</label> -->
-									<input type="text" name="userPhone" id="userPhone" placeholder="Your phone number">
-									<!--<label for="userPostcode">Postcode :</label> -->
-									<input type="text" name="userPostcode" id="userPostcode" placeholder="Home postcode">
-
-									<input type="button" value="Send Feedback" data-icon="check" data-iconpos="right" data-inline="true" onClick="processTheFeedback()">
-								</div>
-							</form>
-						</div>
+								<input type="button" value="Send Feedback" data-icon="check" data-iconpos="right" data-inline="true" onClick="processTheFeedback()">
+							</div>
+						</form>
 					</div>
-					<div id="feedbackThanks" style="display:none">
-						<!-- feedback message goes here -->
-					</div>
-					<p>Please remember we can cater for individual requirements or parties of any size. ( <span id='infinity'>&infin;</span> - 1 === <span id='infinity'>&infin;</span> + 1 === <span id='infinity'>&infin;</span> )</p>
-					<div id="textOutput"></div>
+				</div>
+
+				<div id="feedbackThanks" style="display:none">
+					<!-- feedback message goes here -->
+				</div>
+				<p>Please remember we can cater for individual requirements or parties of any size. ( <span id='infinity'>&infin;</span> - 1 === <span id='infinity'>&infin;</span> + 1 === <span id='infinity'>&infin;</span> )</p>
+					
 			</div> <!-- end of main div -->
 			<div data-role="footer" data-position="fixed">
 				<p id="theFooter">Site Design by John Wilson for Deakin SIT313 Assignment 1</p>

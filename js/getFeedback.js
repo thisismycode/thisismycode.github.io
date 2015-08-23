@@ -25,15 +25,13 @@ $(document).delegate('[id="readFeedback"]', 'pagecreate', function () {
             //output.push('<li>' + "Rating" + "  -  " + " Feedback " + "  -  " + "  Name  " + '</li>');
             for (var key in response.items) { //iterate through the response rows
 
-                 //add each response row to the output variable
-                 //output.push('<li>' + response.items[key] + '</li>');
-                 console.log("Key is " + key + " : " + response.items[key]);
+                 //console.log("Key is " + key + " : " + response.items[key]); // debugging
                  var temp = "";
                  temp = temp + response.items[key];
                  theSplit = temp.split(",");
                  /* the string looks like this
 
-                 6,John Wilson,Peter French says what?,john@aol.com,poor,12345678,3215,123.3.51.222,2015-08-15 16:12:11,0
+                 6,John Wilson,The food was good,john@aol.com,poor,12345678,3215,123.3.51.222,2015-08-15 16:12:11,0
 
                  */
                  var theName = theSplit[1];
